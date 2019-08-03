@@ -1,83 +1,254 @@
-" 这是一份基于 Ubuntu 18.04 的配置， 其他环境未测试
-"
-"==============================================================================
-" 处理 Gnome 终端不能使用 alt 快捷键
-" 参考：http://landcareweb.com/questions/8623/altjian-kuai-jie-jian-bu-gua-yong-yu-dai-you-vimde-gnomezhong-duan
-"==============================================================================
-let c='a'
-while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
-endw
+"-----------------------------------------------------------
+" and i know she is living there and she loves me to this day
+"-----------------------------------------------------------
 
-set timeout ttimeoutlen=50
+" General Settings
 
+set nocompatible	" not compatible with the old-fashion vi mode
+set bs=2		    " allow backspacing over everything in insert mode
+set history=50		" keep 50 lines of command line history
+set ruler		    " show the cursor position all the time
+set autoread		" auto read when file is changed from outside
+set number
 
-"==============================================================================
-" vim 内置配置 
-"==============================================================================
+filetype off          " necessary to make ftdetect work on Linux
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
 
-" 设置 vimrc 修改保存后立刻生效，不用在重新打开
-" 建议配置完成后将这个关闭，否则配置多了之后会很卡
-" autocmd BufWritePost $MYVIMRC source $MYVIMRC
-
-" 关闭兼容模式
-set nocompatible
-
-set number " 设置绝对行号
-set relativenumber " 设置相对行号
-set cursorline "突出显示当前行
-" set cursorcolumn " 突出显示当前列
-set showmatch " 显示括号匹配
-
-" tab 缩进
-set tabstop=4 " 设置Tab长度为4空格
-set shiftwidth=4 " 设置自动缩进长度为4空格
-set autoindent " 继承前一行的缩进方式，适用于多行注释
-
-" 定义快捷键的前缀，即<Leader>
-let mapleader=";" 
-
-" 自定义快捷键
-
-" ==== 系统剪切板复制粘贴 ====
-" v 模式下复制内容到系统剪切板
-vmap <M-c> "+yy
-" n 模式下复制一行到系统剪切板
-nmap <M-c> "+yy
-" n 模式下粘贴系统剪切板的内容
-nmap <M-v> "+p
-
-" 修改默认的区域切换如ctrl+w+h 奇幻到左侧， 依次是 左右上下
-nmap <M-h> <C-w>h
-nmap <M-l> <C-w>l
-nmap <M-k> <C-w>k
-nmap <M-j> <C-w>j
-" 作用和上面一样，只不过是使用的 Leader
-nmap <Leader>h <C-w>h
-nmap <Leader>l <C-w>l
-nmap <Leader>k <C-w>k
-nmap <Leader>j <C-w>j
-
-nmap <Leader>nu :set relativenumber<CR>
-nmap <Leader>nn :set norelativenumber<CR>
-
-"开启实时搜索
-set incsearch
-" 搜索时大小写不敏感
-set ignorecase
 syntax enable
-syntax on                    " 开启文件类型侦测
-filetype plugin indent on    " 启用自动补全
+syntax on		" syntax highlight
+set hlsearch		" search highlighting
 
-" 退出插入模式指定类型的文件自动保存
-au InsertLeave *.go,*.sh,*.php write
+set showmatch		" Cursor shows matching ) and }
+set showmode		" Show current mode
+set wildchar=<TAB>	" start wild expansion in the command line using <TAB>
+set wildmenu        " wild char completion menu
+
+" tab show setting
+" only show filename, exclude dir
+set guitablabel=%m%t
+
+" ignore these files while expanding wild chars
+set wildignore=*.o,*.class,*.pyc
+
+set autoindent		" auto indentation
+set smartindent     " smart indent
+set incsearch		" incremental search
+set nobackup		" no *~ backup files
+set copyindent		" copy the previous indentation on autoindenting
+set ignorecase		" ignore case when searching
+set smartcase		" ignore case if search pattern is all lowercase,case-sensitive otherwise
+set smarttab		" insert tabs on the start of a line according to context
+
+" disable sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+set expandtab        "replace <TAB> with spaces, use space only
+set tabstop=4        "define <TAB> equal 4 spaces
+set softtabstop=4    "
+set shiftwidth=4     " auto indent length
+
+" 自动加载vimrc
+" autocmd! bufwritepost .vimrc source ~/.vimrc
+
+" open cl buffer when a quickfix command be executed
+autocmd QuickFixCmdPost * :cw 
+
+"-----------------------------------------------
+" pmenu
+"-----------------------------------------------
+" --- set highlight pmenu
+"---ctermfg ctermbg is NR-8 for terminal 
+"---guifg guibg are reverse here, i don't know why
+highlight Pmenu ctermbg=7* ctermfg=0 guifg=#666666 guibg=#fbf3f4 
+highlight PmenuSel ctermbg=4  ctermfg=7*  guifg=#1f82cd guibg=#dadd00
+highlight PmenuSbar ctermbg=7*  ctermfg=0 guifg=#606060 guibg=Green  
+
+"---- show 10 items in insert mode complete pop menu
+set pumheight=10
+
+"-----------------------------------------------
+" file type
+"-----------------------------------------------
+
+au FileType Makefile set noexpandtab
+
+" --- for python
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+au BufNewFile,BufRead *.js,*.html,*.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
+
+" -- for proto
+ augroup filetype
+   au! BufRead,BufNewFile *.proto setfiletype proto
+ augroup end
+
+" -- cindent
+autocmd FileType c,cpp,cc  set cindent
+
+"-----------------------------------------------
+" functions
+"-----------------------------------------------
+function! CurDir()
+    let curdir = substitute(getcwd(), $HOME, "~", "")
+    return curdir
+endfunction
+
+function! HasPaste()
+    if &paste
+        return '[PASTE]'
+    else
+        return ''
+    endif
+endfunction
+
+"--------------------------------------------------------------------------- 
+" Tip #382: Search for <cword> and replace with input() in all open buffers 
+" replace the current word in all opened buffers
+" map <leader>r :call Replace()<CR>
+"--------------------------------------------------------------------------- 
+fun! Replace() 
+    let s:word = input("Replace " . expand('<cword>') . " with:") 
+    :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge' 
+    :unlet! s:word 
+endfun 
+
+"--------------------------------------------------------------------------- 
+" USEFUL SHORTCUTS
+"--------------------------------------------------------------------------- 
+" set leader to ,
+let mapleader=","
+let g:mapleader=","
+
+" open the error console
+map <leader>cc :botright cope<CR> 
+" move to next error
+map <leader>en :cn<CR>
+" move to the prev error
+map <leader>ep :cp<CR>
+" close the quickfix window
+map <leader>ec :ccl<CR>
 
 
-"==============================================================================
-" 插件配置 
-"==============================================================================
+" --- move around splits
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+" move around tabs. conflict with the original screen top/bottom
+" comment them out if you want the original H/L
+" go to prev tab 
+map <S-H> gT
+" go to next tab
+map <S-L> gt
+
+" new tab
+map <leader>tn :tabnew<CR>
+" close tab
+map <leader>tc :tabclose<CR> 
+" first tab
+map <leader>tf :tabfirst<CR>
+" last tab
+map <leader>tl :tablast<CR>
+
+" ,/ turn off search highlighting
+nmap <leader>/ :nohl<CR>
+
+" Bash like keys for the command line
+cnoremap <C-A>      <Home>
+cnoremap <C-E>      <End>
+cnoremap <C-K>      <C-U>
+
+" ,ps toggles paste mode
+nmap <leader>ps :set paste!<BAR>set paste?<CR>
+
+" allow multiple indentation/deindentation in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" 自动切换到当前文件所在的目录 cdpath
+map <Leader>cd :cd %:h<CR>
+
+" refresh file manual
+map <F5> :e!<CR>
+
+" compile
+map <F6> :make!<CR>
+
+"--------------------------------------------------------------------------- 
+" PROGRAMMING SHORTCUTS
+"--------------------------------------------------------------------------- 
+function! PTagIt()
+    exec "ptag " . expand("<cword>")
+endfunction
+
+" open a preview tag window
+nmap <leader>pt :call PTagIt()<CR>
+
+" close a preview tag window
+nmap <leader>pc :pc<CR>
+
+
+" ,g generates the header guard
+map <leader>g :call IncludeGuard()<CR>
+
+fun! IncludeGuard()
+   let basename = substitute(bufname(""), '.*/', '', '')
+   let guard = '_' . substitute(toupper(basename), '\.', '_', "H")
+   call append(0, "#ifndef " . guard)
+   call append(1, "#define " . guard)
+   call append( line("$"), "#endif // for #ifndef " . guard)
+endfun
+
+set cot-=preview "disable doc preview in omnicomplete
+
+"--------------------------------------------------------------------------- 
+" ENCODING SETTINGS
+"--------------------------------------------------------------------------- 
+set encoding=utf-8                                  
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
+
+fun! ViewUTF8()
+	set encoding=utf-8                                  
+	set termencoding=big5
+endfun
+
+fun! UTF8()
+	set encoding=utf-8                                  
+	set termencoding=big5
+	set fileencoding=utf-8
+	set fileencodings=ucs-bom,big5,utf-8,latin1
+endfun
+
+fun! Big5()
+	set encoding=big5
+	set fileencoding=big5
+endfun
+
+
+"--------------------------------------------------------------------------- 
+" PLUGIN SETTINGS
+"--------------------------------------------------------------------------- 
 
 " 插件开始的位置
 call plug#begin('~/.vim/plugged')
@@ -85,7 +256,6 @@ call plug#begin('~/.vim/plugged')
 " Vim 中文文档
 Plug 'yianwillis/vimcdoc'
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 " 可以快速对齐的插件
 Plug 'junegunn/vim-easy-align'
 
@@ -126,9 +296,9 @@ Plug 'honza/vim-snippets'
 " 配色方案
 " colorscheme gruvbox 
 Plug 'morhetz/gruvbox'
-" colorscheme one 
 Plug 'rakr/vim-one'
 Plug 'altercation/vim-colors-solarized'
+Plug 'NLKNguyen/papercolor-theme'
 
 " go 主要插件
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -142,21 +312,14 @@ Plug 'iamcco/markdown-preview.vim'
 " 自动生成注释的插件
 Plug 'scrooloose/nerdcommenter'
 
+" easy motion
+Plug 'easymotion/vim-easymotion'
+
+" CTRL-P
+Plug 'kien/ctrlp.vim'
+
 " 插件结束的位置，插件全部放在此行上面
 call plug#end()
-
-
-"==============================================================================
-" 主题配色 
-"==============================================================================
-
-" 开启24bit的颜色，开启这个颜色会更漂亮一些
-set termguicolors
-" 配色方案, 可以从上面插件安装中的选择一个使用 
-" colorscheme gruvbox " gruvbox " 主题
-colorscheme solarized " 主题
-set background=light " 主题背景 dark-深色; light-浅色
-
 
 "==============================================================================
 " vim-go 插件
@@ -180,14 +343,14 @@ let g:godef_split=2
 " 直接通过 go run 执行当前文件
 autocmd FileType go nmap <leader>r :GoRun %<CR>
 
-
 "==============================================================================
 " NERDTree 插件
 "==============================================================================
 
 " 打开和关闭NERDTree快捷键
-map <F10> :NERDTreeToggle<CR>
+map <leader>nt :NERDTreeToggle<CR>
 nmap <M-m> :NERDTreeFind<CR>
+map <F4> :NERDTreeMirror<CR>
 
 " 显示行号
 let NERDTreeShowLineNumbers=1
@@ -205,13 +368,15 @@ let NERDTreeShowBookmarks=2
 " 在终端启动vim时，共享NERDTree
 " let g:nerdtree_tabs_open_on_console_startup=1
 
-
 "==============================================================================
 "  majutsushi/tagbar 插件
 "==============================================================================
 
 " majutsushi/tagbar 插件打开关闭快捷键
-nmap <F9> :TagbarToggle<CR>
+nnoremap <silent> <F7> :TagbarToggle<CR> 
+
+" set focus to TagBar when opening it
+let g:tagbar_autofocus = 1       
 
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
@@ -261,8 +426,6 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:NERDTreeShowIgnoredStatus = 1
 nmap <Leader>pwd :NERDTreeCWD<CR>
 
-
-
 "==============================================================================
 "  Valloric/YouCompleteMe 插件
 "==============================================================================
@@ -275,6 +438,13 @@ let g:SuperTabDefaultCompletionType = '<M-j>'
 " 关闭了提示再次触发的快捷键
 let g:ycm_key_invoke_completion = '<Leader>,'
 
+" -- 白名单
+let g:ycm_filetype_whitelist = { 
+            \ "c":1, "cpp":1, "objc":1, "sh":1, "zsh":1, "java":1,
+            \ "go":1, "python":1, "erlang":1, "cs":1, "lua":1,
+            \ "javascript":1,
+			\ }
+
 "==============================================================================
 " UltiSnips 插件
 "==============================================================================
@@ -282,6 +452,25 @@ let g:ycm_key_invoke_completion = '<Leader>,'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+"==============================================================================
+" --- EasyMotion
+"==============================================================================
+"let g:EasyMotion_leader_key = '<Leader>m' " default is <Leader>w
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
+"==============================================================================
+"--------ctrlp.vim
+"==============================================================================
+let g:ctrlp_map = '<C-Tab>'            " map c-t to open ctrlp plugin
+let g:ctrlp_cmd = 'CtrlPBuffer'        " use this cmd to open ctrlp when you press above mapping
+let g:ctrlp_by_filename = 1            " set default to search filename not path 
+let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_custom_ignore = {
+            \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(exe|so|dll|beam)$'
+            \ }
 
 "==============================================================================
 "  其他插件配置
@@ -309,62 +498,36 @@ let g:NERDSpaceDelims=1
 " 有道词典插件
 map <M-t> :Ydc<CR>
 
-" 自动切换到当前文件所在的目录 cdpath
-map <Leader>cd :cd %:h<CR>
-
 
 "==============================================================================
-" GVim 的配置
+" GUI的设置要放在最后，加载完插件后
 "==============================================================================
-" 如果不使用 GVim ，可以不用配置下面的配置
-if has('gui_running')
-	" colorscheme gruvbox 
-	colorscheme gruvbox
-	set background=light " 主题背景 dark-深色; light-浅色
+if has("gui_running")	" GUI color and font settings
+  " 设置启动时窗口的大小
+  set lines=999 columns=999
 
-	" 设置启动时窗口的大小
-	set lines=999 columns=999 linespace=4
+  set guifont=Courier\ New:h18
+  set background=dark 
 
-	" 设置字体及大小
-    set guifont=Roboto\ Mono\ 13
+  set guioptions -=T    " not toolbar
+  set guioptions -=m    " not menubar
+  set guioptions -=b    " not bottom scroll bar
+  set guioptions -=l    " not left hand scroll bar
+  set guioptions -=r    " not right hand scroll bar
+  set guioptions -=L    " not left hand scroll bar in vsplit windows
+  set guioptions -=R    " not rihgt hand scroll bar in vsplit windows
 
-	set guioptions-=m " 隐藏菜单栏
-	set guioptions-=T " 隐藏工具栏
-	set guioptions-=L " 隐藏左侧滚动条
-	set guioptions-=r " 隐藏右侧滚动条
-	set guioptions-=b " 隐藏底部滚动条
+  "colors gmolokai
+  colorscheme PaperColor 
+  set background=dark 
 
-	" 在 gvim 下不会和 terminal 的 alt+数字的快捷键冲突，
-	" 所以将 tab 切换配置一份 alt+数字的快捷键
-	:nn <M-1> 1gt
-	:nn <M-2> 2gt
-	:nn <M-3> 3gt
-	:nn <M-4> 4gt
-	:nn <M-5> 5gt
-	:nn <M-6> 6gt
-	:nn <M-7> 7gt
-	:nn <M-8> 8gt
-    :nn <M-9> 9gt
-    :nn <M-0> :tablast<CR>
-
+  set termguicolors
+  set cursorline        " highlight current line
+  highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
+else
+  " terminal color settings
+  colors vgod
 endif
-
-
-"==============================================================================
-" 光标随着插入模式改变形状
-" 参考： https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
-"==============================================================================
-if has("autocmd")
-	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-	au InsertEnter,InsertChange *
-		\ if v:insertmode == 'i' |
-		\   silent execute '!echo -ne "\e[6 q"' | redraw! |
-		\ elseif v:insertmode == 'r' |
-		\   silent execute '!echo -ne "\e[4 q"' | redraw! |
-		\ endif
-	au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
-
 
 "==============================================================================
 " vim 的 session 管理
@@ -372,5 +535,6 @@ endif
 "
 " 自动保存 session
 autocmd VimLeave * mks! ~/.vim/session.vim
+
 " 加载 session 的快捷键
 nmap <Leader>his :source ~/.vim/session.vim<CR>
