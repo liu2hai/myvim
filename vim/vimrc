@@ -454,14 +454,14 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "==============================================================================
-" --- EasyMotion
+"  EasyMotion
 "==============================================================================
 "let g:EasyMotion_leader_key = '<Leader>m' " default is <Leader>w
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 
 "==============================================================================
-"--------ctrlp.vim
+"  ctrlp.vim
 "==============================================================================
 let g:ctrlp_map = '<C-Tab>'            " map c-t to open ctrlp plugin
 let g:ctrlp_cmd = 'CtrlPBuffer'        " use this cmd to open ctrlp when you press above mapping
@@ -480,24 +480,11 @@ let g:ctrlp_custom_ignore = {
 map <silent> <F5> <Plug>MarkdownPreview
 map <silent> <F6> <Plug>StopMarkdownPreview
 
-" tab 标签页切换快捷键
-:nn <Leader>1 1gt
-:nn <Leader>2 2gt
-:nn <Leader>3 3gt
-:nn <Leader>4 4gt
-:nn <Leader>5 5gt
-:nn <Leader>6 6gt
-:nn <Leader>7 7gt
-:nn <Leader>8 8gt
-:nn <Leader>9 8gt
-:nn <Leader>0 :tablast<CR>
-
 " 自动注释的时候添加空格
 let g:NERDSpaceDelims=1
 
 " 有道词典插件
 map <M-t> :Ydc<CR>
-
 
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
