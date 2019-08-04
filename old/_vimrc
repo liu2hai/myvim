@@ -1,7 +1,2 @@
 source $VIMRUNTIME/../vimfiles/vimrc
-if has("gui_running") 
-    set encoding=utf-8 " 设置vim内部使用的字符编码 
-    lang messages zh_CN.UTF-8 " 解决consle输出乱码 
-	set gfw=YouYuan:h12:cGB2312
-endif
-au GUIEnter * simalt ~x
+
