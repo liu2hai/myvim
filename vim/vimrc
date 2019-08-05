@@ -59,10 +59,15 @@ set splitbelow  " split buffer below
 set splitright  " split buffer right
 
 " 自动加载vimrc
-autocmd! bufwritepost .vimrc source %
+" autocmd! bufwritepost .vimrc source %
 
 " open cl buffer when a quickfix command be executed
 autocmd QuickFixCmdPost * :cw 
+
+
+" 最后编辑的文件保存光标，下次打开该文件自动停留在上次编辑的地方
+set viminfo='10,\"100,:20,%,n~/.viminfo
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 "-----------------------------------------------
 " pmenu
@@ -421,8 +426,12 @@ let g:tagbar_type_go = {
 "==============================================================================
 "  fzf
 "==============================================================================
+" export FZF_DEFAULT_COMMAND="rg --files --hidden -g'!.git'"
+" export FZF_DEFAULT_COMMAND="rg --files "
+
 nnoremap <silent> <C-p> :FZF --inline-info --reverse<CR> 
 nnoremap <silent> <Leader>b :Buffers<CR> 
+nnoremap <silent> <Leader>f :Rg<CR> 
 let g:fzf_buffers_jump = 1 " [Buffers] 如果可能跳到已存在窗口
 let g:fzf_action = {
   \ 'ctrl-o': 'edit',
@@ -485,9 +494,9 @@ map <M-t> :Ydc<CR>
 function! SetGUIFront()
     if(has("win32") || has("win64"))
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
-        set guifont=Fira\ Code:h13
+        " set guifont=Fira\ Code:h13
         " set guifont=Courier\ New:h13
-        " set guifont=YaHei_Consolas_Hybrid:h13:cGB2312
+        set guifont=Source\ Code\ Pro:h13
         set background=dark 
     elseif has("linux")
         set lines=999 columns=999
@@ -524,15 +533,3 @@ else
 endif
 
 "==============================================================================
-" vim 的 session 管理
-"==============================================================================
-"
-" 自动保存 session
-autocmd VimLeave * mks! ~/.vim/session.vim
-
-" 加载 session 的快捷键
-nmap <Leader>his :source ~/.vim/session.vim<CR>
-
-"Restore cursor to file position in previous editing session
-set viminfo='10,\"100,:20,%,n~/.viminfo
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
