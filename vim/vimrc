@@ -59,7 +59,7 @@ set splitbelow  " split buffer below
 set splitright  " split buffer right
 
 " 自动加载vimrc
-autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufwritepost .vimrc source %
 
 " open cl buffer when a quickfix command be executed
 autocmd QuickFixCmdPost * :cw 
@@ -485,7 +485,9 @@ map <M-t> :Ydc<CR>
 function! SetGUIFront()
     if(has("win32") || has("win64"))
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
-        set guifont=Courier\ New:h14
+        set guifont=Fira\ Code:h12
+        " set guifont=Courier\ New:h13
+        " set guifont=YaHei_Consolas_Hybrid:h13:cGB2312
         set background=dark 
     elseif has("linux")
         set lines=999 columns=999
