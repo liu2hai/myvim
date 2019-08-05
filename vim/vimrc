@@ -485,7 +485,7 @@ map <M-t> :Ydc<CR>
 function! SetGUIFront()
     if(has("win32") || has("win64"))
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
-        set guifont=Fira\ Code:h12
+        set guifont=Fira\ Code:h13
         " set guifont=Courier\ New:h13
         " set guifont=YaHei_Consolas_Hybrid:h13:cGB2312
         set background=dark 
@@ -510,12 +510,12 @@ if has("gui_running")
   set guioptions -=r    " not right hand scroll bar
   set guioptions -=L    " not left hand scroll bar in vsplit windows
   set guioptions -=R    " not rihgt hand scroll bar in vsplit windows
+  set termguicolors
 
-  "colors gmolokai
+  " colorscheme gmolokai
   colorscheme PaperColor 
   set background=dark 
 
-  set termguicolors
   set cursorline        " highlight current line
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
