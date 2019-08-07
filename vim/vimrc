@@ -198,28 +198,12 @@ vnoremap > >gv
 " 自动切换到当前文件所在的目录 cdpath
 map <Leader>cd :cd %:h<CR>
 
-" refresh file manual
-map <F5> :e!<CR>
-
-" compile
-map <F6> :make!<CR>
-
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
 "--------------------------------------------------------------------------- 
-function! PTagIt()
-    exec "ptag " . expand("<cword>")
-endfunction
-
-" open a preview tag window
-nmap <leader>pt :call PTagIt()<CR>
-
-" close a preview tag window
-nmap <leader>pc :pc<CR>
-
 
 " ,g generates the header guard
-map <leader>g :call IncludeGuard()<CR>
+" map <leader>g :call IncludeGuard()<CR>
 
 fun! IncludeGuard()
    let basename = substitute(bufname(""), '.*/', '', '')
@@ -283,8 +267,11 @@ Plug 'jistr/vim-nerdtree-tabs'
 " git plugin
 Plug 'tpope/vim-fugitive'
 
-" 可以在文档中显示 git 信息
+" 可以在文档侧边中显示 git 信息
 Plug 'airblade/vim-gitgutter'
+
+" fugitive browser
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
 
 " 查看当前代码文件中的变量和函数列表的插件，
 " 可以切换和跳转到代码中对应的变量和函数的位置
@@ -296,13 +283,10 @@ Plug 'jiangmiao/auto-pairs'
 
 " Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态
 Plug 'vim-airline/vim-airline'
-
-" 有道词典在线翻译
-Plug 'ianva/vim-youdao-translater'
+Plug 'vim-airline/vim-airline-themes'
 
 " 代码自动完成，安装完插件还需要额外配置才可以使用
 Plug 'Valloric/YouCompleteMe'
-
 
 " 下面两个插件要配合使用，可以自动生成代码块
 Plug 'SirVer/ultisnips'
@@ -315,8 +299,6 @@ Plug 'NLKNguyen/papercolor-theme'
 
 " go 主要插件
 Plug 'fatih/vim-go', { 'tag': '*' }
-" go 中的代码追踪，输入 gd 就可以自动跳转
-Plug 'dgryski/vim-godef'
 
 " markdown 插件
 Plug 'iamcco/mathjax-support-for-mkdp'
@@ -349,13 +331,12 @@ let g:go_version_warning = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
+let g:go_highlight_function_calls = 0
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
-
-let g:godef_split=2
+let g:go_def_mode = 'gopls'
 
 " 直接通过 go run 执行当前文件
 autocmd FileType go nmap <leader>r :GoRun %<CR>
@@ -366,7 +347,6 @@ autocmd FileType go nmap <leader>r :GoRun %<CR>
 
 " 打开和关闭NERDTree快捷键
 map <leader>nt :NERDTreeToggle<CR>
-nmap <M-m> :NERDTreeFind<CR>
 map <F4> :NERDTreeMirror<CR>
 
 " 显示行号
@@ -379,8 +359,6 @@ let NERDTreeShowHidden=0
 " let NERDTreeWinSize=31
 " 忽略一下文件的显示
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
-" 打开 vim 文件及显示书签列表
-let NERDTreeShowBookmarks=2
 
 " 在终端启动vim时，共享NERDTree
 " let g:nerdtree_tabs_open_on_console_startup=1
@@ -395,6 +373,7 @@ nnoremap <silent> <F7> :TagbarToggle<CR>
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1       
 
+"gotag使用方法: gotags -f tags -R .
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
 	\ 'kinds'     : [
@@ -423,15 +402,23 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
+fun! GenGoTags()
+   execute('!gotags -f tags -R .') 
+endfun
+
+nnoremap <silent> <F8> :call GenGoTags()<CR> 
+
 "==============================================================================
 "  fzf
 "==============================================================================
-" export FZF_DEFAULT_COMMAND="rg --files --hidden -g'!.git'"
 " export FZF_DEFAULT_COMMAND="rg --files "
+" export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
-nnoremap <silent> <C-p> :FZF --inline-info --reverse<CR> 
+nnoremap <silent> <C-p> :FZF<CR> 
 nnoremap <silent> <Leader>b :Buffers<CR> 
-nnoremap <silent> <Leader>f :Rg<CR> 
+nnoremap <silent> <Leader>gf :Rg<CR> 
+nnoremap <silent> <Leader>f :Lines <C-r>0<CR> " 先复制，然后在当前buffer查询复制的内容
+
 let g:fzf_buffers_jump = 1 " [Buffers] 如果可能跳到已存在窗口
 let g:fzf_action = {
   \ 'ctrl-o': 'edit',
@@ -485,8 +472,13 @@ map <silent> <F6> <Plug>StopMarkdownPreview
 " 自动注释的时候添加空格
 let g:NERDSpaceDelims=1
 
-" 有道词典插件
-map <M-t> :Ydc<CR>
+" git setting
+let g:gitgutter_max_signs = 99999  " 一个buffer里最多显示sign数量
+nnoremap <silent> <Leader>gs :Gstatus<CR> 
+nnoremap <silent> <Leader>gv :Gitv<CR> 
+
+" airline
+let g:airline_theme='papercolor'
 
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
