@@ -175,10 +175,6 @@ map <S-L> gt
 map <leader>tn :tabnew<CR>
 " close tab
 map <leader>tc :tabclose<CR> 
-" first tab
-map <leader>tf :tabfirst<CR>
-" last tab
-map <leader>tl :tablast<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -279,14 +275,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" 下面两个插件要配合使用，可以自动生成代码块
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 " 配色方案
 Plug 'rakr/vim-one'
-Plug 'altercation/vim-colors-solarized'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'liuchengxu/space-vim-theme'
 
 " go 主要插件
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -323,7 +315,7 @@ let g:go_version_warning = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 0
+let g:go_highlight_function_calls = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_methods = 1
@@ -338,6 +330,18 @@ let g:go_def_mapping_enabled = 1 " use coc's gd
 "==============================================================================
 " coc.nvim 插件
 "==============================================================================
+" 装完coc后需要配置gopls作为lsp server
+" :CocConfig
+"{
+"  "languageserver": {
+"    "golang": {
+"      "command": "gopls",
+"      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+"      "filetypes": ["go"]
+"    }
+"  }
+"}
+"
 " if hidden is not set, TextEdit might fail.
 set hidden
 set nowritebackup
@@ -536,14 +540,6 @@ let g:fzf_action = {
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 "==============================================================================
-" UltiSnips 插件
-"==============================================================================
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-"==============================================================================
 "  EasyMotion
 "==============================================================================
 hi link EasyMotionTarget ErrorMsg
@@ -570,6 +566,7 @@ let g:NERDSpaceDelims=1
 let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
 
 " airline
+" let g:airline_theme='one'
 let g:airline_theme='papercolor'
 let g:airline_section_b = ' %{fugitive#head()}'
 let g:airline#extensions#tagbar#enabled = 0
@@ -586,7 +583,7 @@ function! SetGUIFront()
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
         " set guifont=Fira\ Code:h13
         " set guifont=Courier\ New:h13
-        set guifont=Source\ Code\ Pro:h13
+        set guifont=Source\ Code\ Pro:h14
         set background=dark 
     elseif has("linux")
         set lines=999 columns=999
@@ -611,8 +608,8 @@ if has("gui_running")
   set guioptions -=R    " not rihgt hand scroll bar in vsplit windows
   set termguicolors
 
-  " colorscheme gmolokai
-  colorscheme PaperColor 
+  " colorscheme PaperColor 
+  colorscheme space_vim_theme 
   set background=dark 
 
   set cursorline        " highlight current line
