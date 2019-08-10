@@ -74,6 +74,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 "-----------------------------------------------
 "---- show 10 items in insert mode complete pop menu
 set pumheight=20
+set pumwidth=20
 
 "-----------------------------------------------
 " file type
@@ -140,16 +141,6 @@ endfun
 " set leader to ,
 let mapleader=","
 let g:mapleader=","
-
-" open the error console
-map <leader>eo :botright cope<CR> 
-" move to next error
-map <leader>en :cn<CR>
-" move to the prev error
-map <leader>ep :cp<CR>
-" close the quickfix window
-map <leader>ec :ccl<CR>
-
 
 " --- move around splits
 nmap <silent> <C-j> :wincmd j<CR>
@@ -294,6 +285,9 @@ Plug 'junegunn/fzf.vim'
 " surround
 Plug 'tpope/vim-surround'
 
+" yankstack
+Plug 'maxbrunsfeld/vim-yankstack'
+
 " 插件结束的位置，插件全部放在此行上面
 call plug#end()
 
@@ -315,10 +309,8 @@ let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
-let g:go_def_mapping_enabled = 1 " use coc's gd 
-
-" 直接通过 go run 执行当前文件
-" autocmd FileType go nmap <leader>r :GoRun %<CR>
+let g:go_def_mapping_enabled = 1 
+let g:go_doc_keywordprg_enabled = 0 " use coc' K
 
 "==============================================================================
 " coc.nvim 插件
@@ -329,12 +321,15 @@ let g:go_def_mapping_enabled = 1 " use coc's gd
 "  "languageserver": {
 "    "golang": {
 "      "command": "gopls",
-"      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+"      "rootPatterns": ["go.mod", ".git/", ".hg/"],
 "      "filetypes": ["go"]
 "    }
 "  }
 "}
 "
+" 安装coc-list
+" :CocInstall coc-lists
+" ------------------------------------------------------
 " if hidden is not set, TextEdit might fail.
 set hidden
 set nowritebackup
@@ -381,8 +376,8 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 " nmap <silent> gi <Plug>(coc-implementation)
 " nmap <silent> gr <Plug>(coc-references)
 
-" Use P to show documentation in preview window
-nnoremap <silent>P :call <SID>show_documentation()<CR>
+" Use K to show documentation in preview window
+nnoremap <silent>K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -439,20 +434,25 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+
+" Find symbol of current document 可以当作alt-m用
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+
+" Do default action for next item. 下面这2个按键，可以在coclist的函数间移动
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 
 "==============================================================================
 " NerdTree 插件
@@ -523,8 +523,7 @@ nnoremap <silent> <F8> :call GenGoTags()<CR>
 
 nnoremap <silent> <C-p> :FZF<CR> 
 nnoremap <silent> <Leader>b :Buffers<CR> 
-nnoremap <silent> <Leader>gf :Rg<CR> 
-nnoremap <silent> <Leader>f :Lines <C-r>0<CR> " 先复制，然后在当前buffer查询复制的内容
+nnoremap <silent> <Leader>f :Rg<CR> 
 
 let g:fzf_buffers_jump = 1 " [Buffers] 如果可能跳到已存在窗口
 let g:fzf_action = {
@@ -538,6 +537,9 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 "==============================================================================
 "  EasyMotion
 "==============================================================================
+" 使用<space>w, <space>b来跳转
+map <space> <Plug>(easymotion-prefix)
+
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 
@@ -546,6 +548,14 @@ hi link EasyMotionShade  Comment
 "==============================================================================
 map <silent> <leader>tt :term powershell<CR>
 
+"==============================================================================
+"  yankstack
+"==============================================================================
+" :Yank命令查看当前的循环列表内容
+call yankstack#setup()
+nmap Y y$
+nmap <space>p <Plug>yankstack_substitute_older_paste
+" nmap <space>P <Plug>yankstack_substitute_newer_paste
 
 "==============================================================================
 "  其他插件配置
