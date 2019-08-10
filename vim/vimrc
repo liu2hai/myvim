@@ -547,6 +547,8 @@ hi link EasyMotionShade  Comment
 "  vim-terminal
 "==============================================================================
 map <silent> <leader>tt :term powershell<CR>
+tnoremap <F1> <C-W>N
+
 
 "==============================================================================
 "  yankstack
