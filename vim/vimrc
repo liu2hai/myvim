@@ -1,7 +1,5 @@
 "-----------------------------------------------------------
-" when you slow down
-" Stop And Think
-" is there another way to speed up ?
+" and i know she is living there and she loves me to this day
 "-----------------------------------------------------------
 
 " General Settings
@@ -19,7 +17,7 @@ filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
 syntax enable
-syntax on		    " syntax highlight
+syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
 set showmatch		" Cursor shows matching ) and }
@@ -203,7 +201,7 @@ set cot-=preview "disable doc preview in omnicomplete
 set encoding=utf-8                                  
 set termencoding=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1,cp936,gbk,gb18030
+set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 
 lang messages zh_CN.UTF-8 " 解决consle输出乱码 
 " lang messages en_Us.UTF-8 " 解决consle输出乱码 
@@ -523,7 +521,7 @@ nnoremap <silent> <F8> :call GenGoTags()<CR>
 " export FZF_DEFAULT_COMMAND="rg --files "
 " export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
-nnoremap <silent> <C-p> :FZF -e<CR> 
+nnoremap <silent> <C-p> :FZF<CR> 
 nnoremap <silent> <Leader>b :Buffers<CR> 
 nnoremap <silent> <Leader>f :Rg<CR> 
 
@@ -549,7 +547,6 @@ hi link EasyMotionShade  Comment
 "  vim-terminal
 "==============================================================================
 map <silent> <leader>tt :term powershell<CR>
-map <silent> <leader>ttb :term bash<CR>
 tnoremap <F1> <C-W>N
 
 
@@ -595,7 +592,8 @@ function! SetGUIFront()
         set background=dark 
     elseif has("linux")
         set lines=999 columns=999
-        set guifont=Courier\ New:h14
+        " set guifont=Courier\ New:h14
+        set guifont=Source\ Code\ Pro:h14
         set background=dark 
     elseif has("mac")
         set lines=999 columns=999
