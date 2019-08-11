@@ -1,5 +1,7 @@
 "-----------------------------------------------------------
-" and i know she is living there and she loves me to this day
+" when you slow down
+" Stop And Think
+" is there another way to speed up ?
 "-----------------------------------------------------------
 
 " General Settings
@@ -17,7 +19,7 @@ filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
 syntax enable
-syntax on		" syntax highlight
+syntax on		    " syntax highlight
 set hlsearch		" search highlighting
 
 set showmatch		" Cursor shows matching ) and }
