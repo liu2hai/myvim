@@ -203,7 +203,7 @@ set cot-=preview "disable doc preview in omnicomplete
 set encoding=utf-8                                  
 set termencoding=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
+set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1,cp936,gbk,gb18030
 
 lang messages zh_CN.UTF-8 " 解决consle输出乱码 
 " lang messages en_Us.UTF-8 " 解决consle输出乱码 
@@ -523,7 +523,7 @@ nnoremap <silent> <F8> :call GenGoTags()<CR>
 " export FZF_DEFAULT_COMMAND="rg --files "
 " export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
-nnoremap <silent> <C-p> :FZF<CR> 
+nnoremap <silent> <C-p> :FZF -e<CR> 
 nnoremap <silent> <Leader>b :Buffers<CR> 
 nnoremap <silent> <Leader>f :Rg<CR> 
 
@@ -549,6 +549,7 @@ hi link EasyMotionShade  Comment
 "  vim-terminal
 "==============================================================================
 map <silent> <leader>tt :term powershell<CR>
+map <silent> <leader>ttb :term bash<CR>
 tnoremap <F1> <C-W>N
 
 
