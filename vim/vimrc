@@ -534,6 +534,7 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 
+" 开启历史目录后，在fzf的交互界面使用ctrl-n, ctrl-p来选择之前的输入历史
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 "==============================================================================
@@ -563,9 +564,23 @@ nmap <space>p <Plug>yankstack_substitute_older_paste
 " nmap <space>P <Plug>yankstack_substitute_newer_paste
 
 "==============================================================================
+" vim-easy-align
+"==============================================================================
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+"==============================================================================
+" airline
+"==============================================================================
+" let g:airline_theme='one'
+let g:airline_theme='papercolor'
+let g:airline_section_b = ' %{fugitive#head()}'
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#whitespace#checks = [] " 不检查space用法是否错误
+
+"==============================================================================
 "  其他插件配置
 "==============================================================================
-
 " markdwon 的快捷键
 map <silent> <F5> <Plug>MarkdownPreview
 map <silent> <F6> <Plug>StopMarkdownPreview
@@ -575,13 +590,6 @@ let g:NERDSpaceDelims=1
 
 " git setting
 let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
-
-" airline
-" let g:airline_theme='one'
-let g:airline_theme='papercolor'
-let g:airline_section_b = ' %{fugitive#head()}'
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#whitespace#checks = [] " 不检查space用法是否错误
 
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
