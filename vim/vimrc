@@ -290,6 +290,9 @@ Plug 'tpope/vim-surround'
 " yankstack
 Plug 'maxbrunsfeld/vim-yankstack'
 
+" visual-increment
+Plug 'triglav/vim-visual-increment'
+
 " 插件结束的位置，插件全部放在此行上面
 call plug#end()
 
@@ -577,6 +580,12 @@ let g:airline_theme='papercolor'
 let g:airline_section_b = ' %{fugitive#head()}'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#whitespace#checks = [] " 不检查space用法是否错误
+
+"==============================================================================
+" visual-increment
+"==============================================================================
+" 下面设置ctrl-a,ctrl-x光标下的base进制
+set nrformats=alpha,octal,hex
 
 "==============================================================================
 "  其他插件配置
