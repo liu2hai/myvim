@@ -281,6 +281,8 @@ Plug 'maxbrunsfeld/vim-yankstack'
 " visual-increment
 Plug 'triglav/vim-visual-increment'
 
+Plug 'pakutoma/toggle-terminal'
+
 " 插件结束的位置，插件全部放在此行上面
 call plug#end()
 
@@ -554,10 +556,17 @@ hi link EasyMotionShade  Comment
 "==============================================================================
 "  vim-terminal
 "==============================================================================
-map <silent> <leader>tt :term powershell<CR>
-map <silent> <leader>ttb :term bash<CR>
-tnoremap <F1> <C-W>N
+tnoremap <silent> <F1> <C-W>:ToggleTerminal<CR>
+nnoremap <silent> <F1> :ToggleTerminal<CR>
 
+" set your favorite shell
+let g:toggle_terminal#command = 'powershell'
+if has("linux") || has("mac")
+    let g:toggle_terminal#command = 'bash'
+endif
+
+" set terminal window position (:help vertical)
+let g:toggle_terminal#position = 'botright'
 
 "==============================================================================
 "  yankstack
