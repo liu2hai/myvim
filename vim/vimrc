@@ -303,9 +303,8 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 
-" 使用coc的定义跳转，少开一个gopls
-let g:go_def_mode = 'guru'
-let g:go_info_mode = 'gocode'
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
 let g:go_def_mapping_enabled = 0 
 let g:go_doc_keywordprg_enabled = 0 " use coc' K
 
@@ -619,7 +618,7 @@ function! SetGUIFront()
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
         " set guifont=Fira\ Code:h13
         " set guifont=Courier\ New:h13
-        set guifont=Source\ Code\ Pro:h14
+        set guifont=Source\ Code\ Pro:h13
         set background=dark 
     elseif has("linux")
         set lines=999 columns=999
@@ -658,5 +657,5 @@ endif
 "==============================================================================
 " my macros
 "==============================================================================
-let @q = '_f*s:proto.w~ea(),lDj'
+let @a = '_f*s:proto.w~ea(),lDj'
 
