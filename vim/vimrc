@@ -237,9 +237,7 @@ Plug 'tpope/vim-fugitive'
 " 可以在文档侧边中显示 git 信息
 Plug 'airblade/vim-gitgutter'
 
-" 查看当前代码文件中的变量和函数列表的插件，
-" 可以切换和跳转到代码中对应的变量和函数的位置
-" 大纲式导航, Go 需要 https://github.com/jstemmer/gotags 支持
+" tagbar --Go 需要 https://github.com/jstemmer/gotags 支持
 Plug 'majutsushi/tagbar'
 
 " 自动补全括号的插件，包括小括号，中括号，以及花括号
