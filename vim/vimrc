@@ -142,14 +142,17 @@ nmap <silent> <C-l> :wincmd l<CR>
 " move around tabs. conflict with the original screen top/bottom
 " comment them out if you want the original H/L
 " go to prev tab 
-map <S-H> gT
+map <M-TAB> gT 
 " go to next tab
-map <S-L> gt
-
+map <C-TAB> gt 
 " new tab
-map <leader>tn :tabnew<CR>
+map <leader>tn :tabnew<CR> 
 " close tab
 map <leader>tc :tabclose<CR> 
+
+" buffer switch
+nnoremap <S-H> :bp<CR>
+nnoremap <S-L> :bn<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -309,8 +312,6 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 " vim-go 提供了:GoDecls命令来在当前buffer找出函数
 " 类似coc-list的<space-o>，还是使用coc的命令
 " vim-go里 ]], [[来在当前的buffer的函数间跳转
-" coc-list里设置了<space-j>,<space-k>，不过要
-" 事先执行过一次<space-o>，可以随意选择。
 
 "==============================================================================
 " coc.nvim 插件
@@ -366,8 +367,8 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-tab> to trigger completion，强行触发补全
-inoremap <silent><expr> <c-tab> coc#refresh()
+" Use <c-j> to trigger completion，强行触发补全
+inoremap <silent><expr> <c-j> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -422,9 +423,9 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -454,9 +455,9 @@ nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 
 " Do default action for next item. 下面这2个按键，可以在coclist的函数间移动
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 
 " Resume latest coc list
 nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
@@ -588,8 +589,24 @@ vmap <Enter> <Plug>(EasyAlign)
 let g:airline_theme='papercolor'
 let g:airline_section_b = ' %{fugitive#head()}'
 let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#whitespace#checks = [] " 不检查space用法是否错误
+let g:airline#extensions#whitespace#checks = []     " 不检查space用法是否错误
 
+let g:airline#extensions#tabline#enabled = 1        " 开启tabline
+let g:airline#extensions#tabline#left_sep = ' '     " tabline中当前buffer两端的分隔字符
+let g:airline#extensions#tabline#left_alt_sep = '|' " tabline中未激活buffer两端的分隔字符
+let g:airline#extensions#tabline#buffer_nr_show = 0 " tabline中buffer显示编号
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_splits = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 "==============================================================================
 " visual-increment
 "==============================================================================
