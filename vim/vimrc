@@ -251,6 +251,7 @@ Plug 'rakr/vim-one'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'tomasiser/vim-code-dark'
+Plug 'drewtempelmeyer/palenight.vim'
 
 " go 主要插件
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -584,7 +585,9 @@ vmap <Enter> <Plug>(EasyAlign)
 "==============================================================================
 " let g:airline_theme='one'
 " let g:airline_theme='papercolor'
-let g:airline_theme='codedark'
+" let g:airline_theme='codedark'
+let g:airline_theme='palenight'
+
 let g:airline_section_b = ' %{fugitive#head()}'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#whitespace#checks = []     " 不检查space用法是否错误
@@ -626,15 +629,12 @@ function! SetGUIFront()
         " set guifont=Fira\ Code:h13
         " set guifont=Courier\ New:h13
         set guifont=Source\ Code\ Pro:h13
-        set background=dark 
     elseif has("linux")
         set lines=999 columns=999
         set guifont=Courier\ New:h14
-        set background=dark 
     elseif has("mac")
         set lines=999 columns=999
         set guifont=Courier\ New:h18
-        set background=dark 
     endif 
 endfunction
 
@@ -652,7 +652,8 @@ if has("gui_running")
 
   " colorscheme PaperColor 
   " colorscheme space_vim_theme 
-  colorscheme codedark 
+  " colorscheme codedark 
+  colorscheme palenight 
   set background=dark 
 
   set cursorline        " highlight current line
