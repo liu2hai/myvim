@@ -634,7 +634,7 @@ function! SetGUIFront()
         set guifont=Courier\ New:h14
     elseif has("mac")
         set lines=999 columns=999
-        set guifont=Courier\ New:h18
+        set guifont=Source\ Code\ Pro:h18
     endif 
 endfunction
 
