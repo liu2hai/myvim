@@ -1,0 +1,4 @@
+if has("gui_macvim")
+   " disable the original Cmd-T (open new tab)
+endif
+

@@ -584,11 +584,6 @@ vmap <Enter> <Plug>(EasyAlign)
 "==============================================================================
 " airline
 "==============================================================================
-" let g:airline_theme='one'
-" let g:airline_theme='papercolor'
-" let g:airline_theme='codedark'
-let g:airline_theme='palenight'
-
 let g:airline_section_b = ' %{fugitive#head()}'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#whitespace#checks = []     " 不检查space用法是否错误
@@ -624,24 +619,33 @@ let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
 "==============================================================================
-function! SetGUIFront()
+" colorscheme --[space_vim_theme, PaperColor, palenight, one, codedark]
+" let g:airline_theme -- [papercolor, palenight, one, codedark]
+
+function! SetFrontNTheme()
     if(has("win32") || has("win64"))
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
         " set guifont=Fira\ Code:h13
-        " set guifont=Courier\ New:h13
         set guifont=Source\ Code\ Pro:h13
+        colorscheme palenight 
+        set background=dark 
+        let g:airline_theme='palenight'
     elseif has("linux")
         set lines=999 columns=999
         set guifont=Courier\ New:h14
+        colorscheme codedark 
+        set background=dark 
+        let g:airline_theme='codedark'
     elseif has("mac")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h18
+        colorscheme one 
+        set background=dark 
+        let g:airline_theme='one'
     endif 
 endfunction
 
 if has("gui_running")	
-  :call SetGUIFront()
-
   set guioptions -=T    " not toolbar
   set guioptions -=m    " not menubar
   set guioptions -=b    " not bottom scroll bar
@@ -651,12 +655,7 @@ if has("gui_running")
   set guioptions -=R    " not rihgt hand scroll bar in vsplit windows
   set termguicolors
 
-  " colorscheme PaperColor 
-  " colorscheme space_vim_theme 
-  " colorscheme codedark 
-  colorscheme palenight 
-  set background=dark 
-
+  :call SetFrontNTheme()
   set cursorline        " highlight current line
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
