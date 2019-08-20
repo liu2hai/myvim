@@ -533,7 +533,7 @@ nnoremap <silent> <Leader>b :Leaderf  --reverse --nameOnly buffer <CR>
 nnoremap <silent> <Leader>f :Leaderf  --reverse --nameOnly rg -i <CR> 
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-
+let g:Lf_StlColorscheme = 'one'
 "==============================================================================
 "  EasyMotion
 "==============================================================================
@@ -659,4 +659,3 @@ endif
 " my macros
 "==============================================================================
 let @a = '_f*s:proto.w~ea(),lDj'
-
