@@ -267,9 +267,12 @@ Plug 'scrooloose/nerdcommenter'
 " easy motion
 Plug 'easymotion/vim-easymotion'
 
-" fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
+" leaderF
+if(has("win32") || has("win64"))
+    Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
+else
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+endif
 
 " surround
 Plug 'tpope/vim-surround'
@@ -523,24 +526,13 @@ endfun
 nnoremap <silent> <F8> :call GenGoTags()<CR> 
 
 "==============================================================================
-"  fzf
+"  leaderF
 "==============================================================================
-" export FZF_DEFAULT_COMMAND="rg --files "
-" export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
+nnoremap <silent> <C-p> :Leaderf --reverse --nameOnly file <CR> 
+nnoremap <silent> <Leader>b :Leaderf  --reverse --nameOnly buffer <CR> 
+nnoremap <silent> <Leader>f :Leaderf  --reverse --nameOnly rg -i <CR> 
 
-nnoremap <silent> <C-p> :FZF -e<CR> 
-nnoremap <silent> <Leader>b :Buffers<CR> 
-nnoremap <silent> <Leader>f :Rg<CR> 
-
-let g:fzf_buffers_jump = 1 " [Buffers] 如果可能跳到已存在窗口
-let g:fzf_action = {
-  \ 'ctrl-o': 'edit',
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-" 开启历史目录后，在fzf的交互界面使用ctrl-n, ctrl-p来选择之前的输入历史
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 
 "==============================================================================
 "  EasyMotion
