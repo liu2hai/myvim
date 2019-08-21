@@ -532,12 +532,13 @@ nnoremap <silent> <F8> :call GenGoTags()<CR>
 "==============================================================================
 "  leaderF
 "==============================================================================
-nnoremap <silent> <C-p> :Leaderf --reverse --nameOnly file <CR> 
-nnoremap <silent> <Leader>b :Leaderf  --reverse --nameOnly buffer <CR> 
-nnoremap <silent> <Leader>f :Leaderf  --reverse --nameOnly rg -i <CR> 
+nnoremap <silent> <C-p> :Leaderf --nameOnly file <CR> 
+nnoremap <silent> <Leader>b :Leaderf  --nameOnly buffer <CR> 
+nnoremap <silent> <Leader>f :Leaderf  --nameOnly --cword rg -i <CR> 
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_StlColorscheme = 'one'
+let g:Lf_ReverseOrder = 1
 "==============================================================================
 "  EasyMotion
 "==============================================================================
