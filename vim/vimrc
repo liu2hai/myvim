@@ -171,6 +171,10 @@ map <Leader>cd :cd %:h<CR>
 cnoremap <C-V> <C-R>0
 inoremap <C-V> <C-R>0
 
+" 代替c-u, c-d翻页
+nnoremap <silent> <space>u <C-U>
+nnoremap <silent> <space>d <C-D>
+
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
 "--------------------------------------------------------------------------- 
@@ -539,6 +543,7 @@ nnoremap <silent> <Leader>f :Leaderf  --nameOnly --cword rg -i <CR>
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_StlColorscheme = 'one'
 let g:Lf_ReverseOrder = 1
+
 "==============================================================================
 "  EasyMotion
 "==============================================================================
