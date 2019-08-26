@@ -300,7 +300,7 @@ call plug#end()
 " vim-go 插件
 "==============================================================================
 let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
-let g:go_autodetect_gopath = 1
+let g:go_autodetect_gopath = 0
 let g:go_list_type = "quickfix"
 let g:go_metalinter_command = "golangci-lint"
 
