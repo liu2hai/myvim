@@ -5,7 +5,6 @@
 "-----------------------------------------------------------
 
 " General Settings
-
 set nocompatible	" not compatible with the old-fashion vi mode
 set bs=2		    " allow backspacing over everything in insert mode
 set history=50		" keep 50 lines of command line history
@@ -60,12 +59,8 @@ set winaltkeys=no       " don't use alt key
 set splitbelow  " split buffer below
 set splitright  " split buffer right
 
-" 自动加载vimrc
-" autocmd! bufwritepost .vimrc source %
-
 " open cl buffer when a quickfix command be executed
 autocmd QuickFixCmdPost * :cw 
-
 
 " 最后编辑的文件保存光标，下次打开该文件自动停留在上次编辑的地方
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -81,7 +76,6 @@ set pumwidth=20
 "-----------------------------------------------
 " file type
 "-----------------------------------------------
-
 au FileType Makefile set noexpandtab
 
 " --- for python
@@ -203,7 +197,6 @@ set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1,cp936,gbk,gb18030
 lang messages zh_CN.UTF-8 " 解决consle输出乱码 
 " lang messages en_Us.UTF-8 " 解决consle输出乱码 
 
-
 fun! ViewUTF8()
 	set encoding=utf-8                                  
 	set termencoding=big5
@@ -220,7 +213,6 @@ fun! Big5()
 	set encoding=big5
 	set fileencoding=big5
 endfun
-
 
 "--------------------------------------------------------------------------- 
 " PLUGIN SETTINGS
@@ -332,7 +324,7 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 "  "languageserver": {
 "    "golang": {
 "      "command": "gopls",
-"      "rootPatterns": ["go.mod", ".git/", ".hg/"],
+"      "rootPatterns": ["go.mod"],
 "      "filetypes": ["go"]
 "    }
 "  },
@@ -461,14 +453,6 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Find symbol of current document 可以当作alt-m用
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 
-" Search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-
-" Do default action for next item. 下面这2个按键，可以在coclist的函数间移动
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-
 " Resume latest coc list
 nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 
@@ -534,7 +518,7 @@ endfun
 nnoremap <silent> <F8> :call GenGoTags()<CR> 
 
 "==============================================================================
-"  leaderF
+"  leaderF -- echo g:Lf_fuzzyMatch_C
 "==============================================================================
 nnoremap <silent> <C-p> :Leaderf --nameOnly file <CR> 
 nnoremap <silent> <Leader>b :Leaderf  --nameOnly buffer <CR> 
