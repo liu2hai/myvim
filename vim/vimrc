@@ -283,7 +283,11 @@ Plug 'maxbrunsfeld/vim-yankstack'
 " visual-increment
 Plug 'triglav/vim-visual-increment'
 
+" toggle terminal
 Plug 'pakutoma/toggle-terminal'
+
+" 启动屏插件
+Plug 'mhinz/vim-startify'
 
 " 插件结束的位置，插件全部放在此行上面
 call plug#end()
