@@ -114,10 +114,10 @@ let mapleader=","
 let g:mapleader=","
 
 " --- move around splits
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
+nmap <silent> <space>j :wincmd j<CR>
+nmap <silent> <space>k :wincmd k<CR>
+nmap <silent> <space>h :wincmd h<CR>
+nmap <silent> <space>l :wincmd l<CR>
 
 " move around tabs. conflict with the original screen top/bottom
 " comment them out if you want the original H/L
@@ -154,6 +154,26 @@ inoremap <C-V> <C-R>0
 " 代替c-u, c-d翻页
 nnoremap <silent> <space>u <C-U>
 nnoremap <silent> <space>d <C-D>
+
+" 交换`和'
+nnoremap ' `
+nnoremap ` '
+
+" 搜索的时候保持屏幕在中央
+nnoremap * *zz
+nnoremap # #zz
+nnoremap n nzz
+nnoremap N Nzz
+
+nnoremap g; g;zz
+nnoremap g, g,zz
+
+" 更好地使用跳转列表
+noremap <space>o <C-o>
+noremap <space>i <C-i>
+
+" inser mode切换回normal mode
+inoremap <space>[ <Esc>
 
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
@@ -346,7 +366,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-j> to trigger completion，强行触发补全
-inoremap <silent><expr> <c-j> coc#refresh()
+inoremap <silent><expr> <C-j> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -398,7 +418,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 " Find symbol of current document 可以当作alt-m用
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>m  :<C-u>CocList outline<cr>
 
 " Resume latest coc list
 nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
@@ -411,7 +431,7 @@ map <leader>nt :NERDTreeToggle<CR>
 map <F4> :NERDTreeMirror<CR>
 
 " 自动定位到nerdtree
-map <leader>nf :NERDTreeFind<CR>zz<C-l> 
+map <leader>nf :NERDTreeFind<CR>zz
 
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
