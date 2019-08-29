@@ -69,9 +69,11 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 "-----------------------------------------------
 " pmenu
 "-----------------------------------------------
-"---- show 10 items in insert mode complete pop menu
+" show 10 items in insert mode complete pop menu
 set pumheight=20
-set pumwidth=20
+
+"disable doc preview in omnicomplete
+set cot-=preview 
 
 "-----------------------------------------------
 " file type
@@ -103,22 +105,6 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 
 " -- cindent
 autocmd FileType c,cpp,cc  set cindent
-
-"-----------------------------------------------
-" functions
-"-----------------------------------------------
-function! CurDir()
-    let curdir = substitute(getcwd(), $HOME, "~", "")
-    return curdir
-endfunction
-
-function! HasPaste()
-    if &paste
-        return '[PASTE]'
-    else
-        return ''
-    endif
-endfunction
 
 "--------------------------------------------------------------------------- 
 " USEFUL SHORTCUTS
@@ -184,8 +170,6 @@ fun! IncludeGuard()
    call append( line("$"), "#endif // for #ifndef " . guard)
 endfun
 
-set cot-=preview "disable doc preview in omnicomplete
-
 "--------------------------------------------------------------------------- 
 " ENCODING SETTINGS
 "--------------------------------------------------------------------------- 
@@ -217,18 +201,17 @@ endfun
 "--------------------------------------------------------------------------- 
 " PLUGIN SETTINGS
 "--------------------------------------------------------------------------- 
-
 " 插件开始的位置
 call plug#begin('~/.vim/plugged')
 
-" 用来提供一个导航目录的侧边栏
+" 树形目录浏览
 Plug 'scrooloose/nerdtree'
+
+" tagbar --Go 需要 https://github.com/jstemmer/gotags 支持
+Plug 'majutsushi/tagbar'
 
 " Vim 中文文档
 Plug 'yianwillis/vimcdoc'
-
-" 可以快速对齐的插件
-Plug 'junegunn/vim-easy-align'
 
 " git plugin
 Plug 'tpope/vim-fugitive'
@@ -236,36 +219,24 @@ Plug 'tpope/vim-fugitive'
 " 可以在文档侧边中显示 git 信息
 Plug 'airblade/vim-gitgutter'
 
-" tagbar --Go 需要 https://github.com/jstemmer/gotags 支持
-Plug 'majutsushi/tagbar'
-
-" 自动补全括号的插件，包括小括号，中括号，以及花括号
-Plug 'jiangmiao/auto-pairs'
-
 " Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " 配色方案
 Plug 'rakr/vim-one'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'drewtempelmeyer/palenight.vim'
 
 " go 主要插件
 Plug 'fatih/vim-go', { 'tag': '*' }
+
+" 补全插件
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " markdown 插件
-Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
-
-" 自动生成注释的插件
-Plug 'scrooloose/nerdcommenter'
-
-" easy motion
-Plug 'easymotion/vim-easymotion'
 
 " leaderF
 if(has("win32") || has("win64"))
@@ -274,14 +245,14 @@ else
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 endif
 
-" surround
+" 文本编辑相关插件
+Plug 'jiangmiao/auto-pairs'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
-
-" yankstack
 Plug 'maxbrunsfeld/vim-yankstack'
-
-" visual-increment
 Plug 'triglav/vim-visual-increment'
+Plug 'junegunn/vim-easy-align'
 
 " toggle terminal
 Plug 'pakutoma/toggle-terminal'
@@ -337,6 +308,7 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 "
 " 安装coc-list
 " :CocInstall coc-lists
+" coc-list操作界面的key map，见:h coc-list-mappings
 "
 " 安装coc-json, 提供配置补全
 " :CocInstall coc-json
@@ -404,12 +376,11 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word
+" Remap for rename current word -- 重命名当前光标所在单词
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for format selected region
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+" 列出当前光标所在单词的引用
+nmap <silent><leader>rf <Plug>(coc-references)
 
 augroup mygroup
   autocmd!
@@ -419,40 +390,12 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-" nmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-
-" Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
 " Find symbol of current document 可以当作alt-m用
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
@@ -587,6 +530,7 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+
 "==============================================================================
 " visual-increment
 "==============================================================================
@@ -612,13 +556,12 @@ let g:startify_change_to_dir = 0
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
 "==============================================================================
-" colorscheme --[space_vim_theme, PaperColor, palenight, one, codedark]
-" let g:airline_theme -- [papercolor, palenight, one, codedark]
+" colorscheme --[space_vim_theme, palenight, one, codedark]
+" let g:airline_theme -- [ palenight, one, codedark]
 
 function! SetFrontNTheme()
     if(has("win32") || has("win64"))
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
-        " set guifont=Fira\ Code:h13
         set guifont=Source\ Code\ Pro:h13
         colorscheme palenight 
         set background=dark 
