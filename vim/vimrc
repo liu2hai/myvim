@@ -59,6 +59,8 @@ set winaltkeys=no       " don't use alt key
 set splitbelow  " split buffer below
 set splitright  " split buffer right
 
+set laststatus=2 " always show statusline
+
 " open cl buffer when a quickfix command be executed
 autocmd QuickFixCmdPost * :cw 
 
@@ -419,11 +421,11 @@ nnoremap <silent> <space>m  :<C-u>CocList outline<cr>
 " NerdTree 插件
 "==============================================================================
 " 打开和关闭NERDTree快捷键
-map <space>n :NERDTreeToggle<CR>
-map <F4> :NERDTreeMirror<CR>
+nnoremap <silent> <space>n :NERDTreeToggle<CR>
+nnoremap <F4> :NERDTreeMirror<CR>
 
 " 自动定位到nerdtree
-map <space>f :NERDTreeFind<CR>zz
+nnoremap <silent> <space>f :NERDTreeFind<CR>zz
 
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
