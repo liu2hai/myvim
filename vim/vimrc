@@ -133,7 +133,7 @@ map <leader>tn :tabnew<CR>
 " close tab
 map <leader>tc :tabclose<CR> 
 " tab only
-noremap <space>q :tabo<CR>
+map <space>q :tabo<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -519,8 +519,8 @@ let g:toggle_terminal#position = 'botright'
 " :Yank命令查看当前的循环列表内容
 call yankstack#setup()
 nmap Y y$
-nmap <space>p <Plug>yankstack_substitute_older_paste
-" nmap <space>P <Plug>yankstack_substitute_newer_paste
+nnoremap <space>p <Plug>yankstack_substitute_older_paste
+" nnoremap <space>P <Plug>yankstack_substitute_newer_paste
 
 "==============================================================================
 " vim-easy-align
@@ -556,7 +556,7 @@ set nrformats=alpha,octal,hex
 "==============================================================================
 " 自动注释的时候添加空格
 let g:NERDSpaceDelims=1
-nmap <space>c <plug>NERDCommenterToggle
+nnoremap <space>c <plug>NERDCommenterToggle
 
 "==============================================================================
 "  其他插件配置
