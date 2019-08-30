@@ -1,2 +1,29 @@
 *myvim.txt*   my vim note
 *zlh* *myvim*
+==============================================================================
+/ #####  #    # #    #    #####  #    # #    #    #####  #    # #    #        /
+/ #    # #    # ##   #    #    # #    # ##   #    #    # #    # ##   #        /
+/ #    # #    # # #  #    #    # #    # # #  #    #    # #    # # #  #        /
+/ #####  #    # #  # #    #####  #    # #  # #    #####  #    # #  # #        /
+/ #   #  #    # #   ##    #   #  #    # #   ##    #   #  #    # #   ##        /
+/ #    #  ####  #    #    #    #  ####  #    #    #    #  ####  #    #        /
+==============================================================================
+
+插件用法                                        *myvim-plugins*
+vim-go                                          |myvim-vim-go|
+coc.nvim                                        |myvim-coc|
+nerdTree                                        |myvim-nerdTree|
+tagbar                                          |myvim-tagbar|
+leaderF                                         |myvim-leaderF|
+easyMotion                                      |myvim-easyMotion|
+terminal                                        |myvim-terminal|
+yankstack                                       |myvim-yankstack|
+easy-align                                      |myvim-easy-align|
+airline                                         |myvim-airline|
+visual-increment                                |myvim-visual-increment|
+markdown                                        |myvim-markdown|
+
+==============================================================================
+插件用法                                    *myvim-plugins*
+
+This plugin is mainly used for locating files, buffers, mrus, tags in large project.

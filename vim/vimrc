@@ -125,27 +125,30 @@ nmap <silent> <space>l :wincmd l<CR>
 map <S-H> gT 
 " go to next tab
 map <S-L> gt 
+
 " new tab
 map <leader>tn :tabnew<CR> 
 " close tab
 map <leader>tc :tabclose<CR> 
+" tab only
+noremap <space>q :tabo<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
 
-" Bash like keys for the command line
-cnoremap <C-a>      <Home>
-cnoremap <C-e>      <End>
-
 " ,ps toggles paste mode
 nmap <leader>ps :set paste!<BAR>set paste?<CR>
+
+" 自动切换到当前文件所在的目录 cdpath
+map <Leader>cd :cd %:h<CR>
+
+" Bash like keys for the command line
+cnoremap <C-a>   <Home>
+cnoremap <C-e>   <End>
 
 " allow multiple indentation/deindentation in visual mode
 vnoremap < <gv
 vnoremap > >gv
-
-" 自动切换到当前文件所在的目录 cdpath
-map <Leader>cd :cd %:h<CR>
 
 " 使用c-v
 cnoremap <C-V> <C-R>0
@@ -172,8 +175,9 @@ nnoremap g, g,zz
 noremap <space>o <C-o>
 noremap <space>i <C-i>
 
-" inser mode切换回normal mode
-inoremap <space>[ <Esc>
+" tag跳转重新映射
+noremap <space>] <C-]>
+noremap <space>t <C-t>
 
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
@@ -224,10 +228,7 @@ endfun
 " 插件开始的位置
 call plug#begin('~/.vim/plugged')
 
-" 树形目录浏览
 Plug 'scrooloose/nerdtree'
-
-" tagbar --Go 需要 https://github.com/jstemmer/gotags 支持
 Plug 'majutsushi/tagbar'
 
 " Vim 中文文档
@@ -239,7 +240,6 @@ Plug 'tpope/vim-fugitive'
 " 可以在文档侧边中显示 git 信息
 Plug 'airblade/vim-gitgutter'
 
-" Vim状态栏插件，包括显示行号，列号，文件类型，文件名，以及Git状态
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -305,10 +305,6 @@ let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
 let g:go_def_mapping_enabled = 0 
 let g:go_doc_keywordprg_enabled = 0 " use coc' K
-
-" vim-go 提供了:GoDecls命令来在当前buffer找出函数
-" 类似coc-list的<space-o>，还是使用coc的命令
-" vim-go里 ]], [[来在当前的buffer的函数间跳转
 
 "==============================================================================
 " coc.nvim 插件
@@ -378,9 +374,11 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+
+" 列出当前光标所在单词的引用
+nmap <silent> gr <Plug>(coc-references)
 " nmap <silent> gy <Plug>(coc-type-definition)
 " nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent>K :call <SID>show_documentation()<CR>
@@ -398,9 +396,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word -- 重命名当前光标所在单词
 nmap <leader>rn <Plug>(coc-rename)
-
-" 列出当前光标所在单词的引用
-nmap <silent><leader>rf <Plug>(coc-references)
 
 augroup mygroup
   autocmd!
@@ -420,18 +415,15 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Find symbol of current document 可以当作alt-m用
 nnoremap <silent> <space>m  :<C-u>CocList outline<cr>
 
-" Resume latest coc list
-nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
-
 "==============================================================================
 " NerdTree 插件
 "==============================================================================
 " 打开和关闭NERDTree快捷键
-map <leader>nt :NERDTreeToggle<CR>
+map <space>n :NERDTreeToggle<CR>
 map <F4> :NERDTreeMirror<CR>
 
 " 自动定位到nerdtree
-map <leader>nf :NERDTreeFind<CR>zz
+map <space>f :NERDTreeFind<CR>zz
 
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
@@ -507,8 +499,8 @@ hi link EasyMotionShade  Comment
 "==============================================================================
 "  vim-terminal
 "==============================================================================
-tnoremap <silent> <F1> <C-W>:ToggleTerminal<CR>
-nnoremap <silent> <F1> :ToggleTerminal<CR>
+tnoremap <silent> <C-j> <C-W>:ToggleTerminal<CR>
+nnoremap <silent> <C-j> :ToggleTerminal<CR>
 
 " set your favorite shell
 let g:toggle_terminal#command = 'powershell'
@@ -558,14 +550,18 @@ let g:airline_right_alt_sep = ''
 set nrformats=alpha,octal,hex
 
 "==============================================================================
+" nerdcommenter
+"==============================================================================
+" 自动注释的时候添加空格
+let g:NERDSpaceDelims=1
+nmap <space>c <plug>NERDCommenterToggle
+
+"==============================================================================
 "  其他插件配置
 "==============================================================================
 " markdwon 的快捷键
 map <silent> <F5> <Plug>MarkdownPreview
 map <silent> <F6> <Plug>StopMarkdownPreview
-
-" 自动注释的时候添加空格
-let g:NERDSpaceDelims=1
 
 " git setting
 let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
