@@ -584,6 +584,9 @@ function! SetFrontNTheme()
         colorscheme palenight 
         set background=dark 
         let g:airline_theme='palenight'
+
+        " 使用directx渲染,需要gvim支持directx -- :version
+        set rop=type:directx,level:0.75,gamma:1.25,contrast:0.25,geom:1,renmode:5,taamode:1
     elseif has("linux")
         set lines=999 columns=999
         set guifont=Courier\ New:h14
@@ -607,7 +610,6 @@ if has("gui_running")
   set guioptions -=r    " not right hand scroll bar
   set guioptions -=L    " not left hand scroll bar in vsplit windows
   set guioptions -=R    " not rihgt hand scroll bar in vsplit windows
-  set termguicolors
 
   :call SetFrontNTheme()
   set cursorline        " highlight current line
