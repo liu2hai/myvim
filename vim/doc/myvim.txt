@@ -23,6 +23,7 @@ easyMotion                                      |myvim-easyMotion|
 terminal                                        |myvim-terminal|
 easy-align                                      |myvim-easy-align|
 visual-increment                                |myvim-visual-increment|
+yankstack                                       |myvim-yankstack|
 
 学习笔记                                        *myvim-note*
 基础                                            |myvim-basic|
@@ -87,7 +88,7 @@ tagbar                                          *myvim-tagbar*
 
 ==============================================================================
 leaderF                                         *myvim-leaderF*
-    <C-p>           查找文件
+    <leader>s       查找文件
     <leader>f       项目全文搜索
     <leader>b       buffer跳转
 
@@ -100,7 +101,7 @@ easyMotion                                      *myvim-easyMotion*
 ==============================================================================
 terminal                                        *myvim-terminal*
 
-    <C-j>   显示和关闭terminal
+    <F1>   显示和关闭terminal
 
 ==============================================================================
 easy-align                                      *myvim-easy-align*
@@ -112,6 +113,11 @@ visual-increment                                *myvim-visual-increment*
     
     <C-a>  选中文本，增加
     <C-x>  选中文本，减少
+
+==============================================================================
+yankstack                                       *myvim-yankstack*
+
+    <space>p  粘贴之前的选项
 
 ==============================================================================
 commenter                                       *myvim-nerdComenter*

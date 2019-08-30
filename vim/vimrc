@@ -140,7 +140,7 @@ nmap <leader>/ :nohl<CR>
 nmap <leader>ps :set paste!<BAR>set paste?<CR>
 
 " 自动切换到当前文件所在的目录 cdpath
-map <Leader>cd :cd %:h<CR>
+map <leader>cd :cd %:h<CR>
 
 " Bash like keys for the command line
 cnoremap <C-a>   <Home>
@@ -479,7 +479,7 @@ nnoremap <silent> <F8> :call GenGoTags()<CR>
 "==============================================================================
 "  leaderF -- echo g:Lf_fuzzyMatch_C
 "==============================================================================
-nnoremap <silent> <C-p> :Leaderf --nameOnly file <CR> 
+nnoremap <silent> <leader>s :Leaderf --nameOnly file <CR> 
 nnoremap <silent> <Leader>b :Leaderf  --nameOnly buffer <CR> 
 nnoremap <silent> <Leader>f :Leaderf  --nameOnly --cword rg -i <CR> 
 
@@ -499,8 +499,8 @@ hi link EasyMotionShade  Comment
 "==============================================================================
 "  vim-terminal
 "==============================================================================
-tnoremap <silent> <C-j> <C-W>:ToggleTerminal<CR>
-nnoremap <silent> <C-j> :ToggleTerminal<CR>
+tnoremap <silent> <F1> <C-W>:ToggleTerminal<CR>
+nnoremap <silent> <F1> :ToggleTerminal<CR>
 
 " set your favorite shell
 let g:toggle_terminal#command = 'powershell'

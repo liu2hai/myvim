@@ -15,5 +15,6 @@ myvim-tagbar	myvim.txt	/*myvim-tagbar*
 myvim-terminal	myvim.txt	/*myvim-terminal*
 myvim-vim-go	myvim.txt	/*myvim-vim-go*
 myvim-visual-increment	myvim.txt	/*myvim-visual-increment*
+myvim-yankstack	myvim.txt	/*myvim-yankstack*
 myvim.txt	myvim.txt	/*myvim.txt*
 zlh	myvim.txt	/*zlh*
