@@ -161,17 +161,17 @@ nmap <silent> <space>u <C-U>
 nmap <silent> <space>d <C-D>
 
 " 交换`和'
-map ' `
-map ` '
+nnoremap ' `
+nnoremap ` '
 
 " 搜索的时候保持屏幕在中央
-nmap * *zz
-nmap # #zz
-nmap n nzz
-nmap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap n nzz
+nnoremap N Nzz
 
-nmap g; g;zz
-nmap g, g,zz
+nnoremap g; g;zz
+nnoremap g, g,zz
 
 " 更好地使用跳转列表
 nmap <space>o <C-o>
@@ -493,7 +493,8 @@ let g:Lf_ReverseOrder = 1
 "  EasyMotion
 "==============================================================================
 " 使用<space>w, <space>b来跳转
-map <space> <Plug>(easymotion-prefix)
+map <silent><space>w <Plug>(easymotion-w)
+map <silent><space>b <Plug>(easymotion-b)
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
@@ -519,8 +520,9 @@ let g:toggle_terminal#position = 'botright'
 " :Yank命令查看当前的循环列表内容
 call yankstack#setup()
 nmap Y y$
-nmap <space>p <Plug>yankstack_substitute_older_paste
-" nmap <space>P <Plug>yankstack_substitute_newer_paste
+let g:yankstack_map_keys = 0
+map <space>p <Plug>yankstack_substitute_older_paste
+" map <space>P <Plug>yankstack_substitute_newer_paste
 
 "==============================================================================
 " vim-easy-align
