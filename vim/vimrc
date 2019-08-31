@@ -116,10 +116,10 @@ let mapleader=","
 let g:mapleader=","
 
 " --- move around splits
-nmap <silent> <space>j :wincmd j<CR>
-nmap <silent> <space>k :wincmd k<CR>
-nmap <silent> <space>h :wincmd h<CR>
-nmap <silent> <space>l :wincmd l<CR>
+map <silent> <space>j :wincmd j<CR>
+map <silent> <space>k :wincmd k<CR>
+map <silent> <space>h :wincmd h<CR>
+map <silent> <space>l :wincmd l<CR>
 
 " move around tabs. conflict with the original screen top/bottom
 " comment them out if you want the original H/L
@@ -157,29 +157,29 @@ cnoremap <C-V> <C-R>0
 inoremap <C-V> <C-R>0
 
 " 代替c-u, c-d翻页
-nnoremap <silent> <space>u <C-U>
-nnoremap <silent> <space>d <C-D>
+nmap <silent> <space>u <C-U>
+nmap <silent> <space>d <C-D>
 
 " 交换`和'
-nnoremap ' `
-nnoremap ` '
+map ' `
+map ` '
 
 " 搜索的时候保持屏幕在中央
-nnoremap * *zz
-nnoremap # #zz
-nnoremap n nzz
-nnoremap N Nzz
+nmap * *zz
+nmap # #zz
+nmap n nzz
+nmap N Nzz
 
-nnoremap g; g;zz
-nnoremap g, g,zz
+nmap g; g;zz
+nmap g, g,zz
 
 " 更好地使用跳转列表
-noremap <space>o <C-o>
-noremap <space>i <C-i>
+nmap <space>o <C-o>
+nmap <space>i <C-i>
 
 " tag跳转重新映射
-noremap <space>] <C-]>
-noremap <space>t <C-t>
+nmap <space>] <C-]>
+nmap <space>t <C-t>
 
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
@@ -412,20 +412,20 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nmap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 " Find symbol of current document 可以当作alt-m用
-nnoremap <silent> <space>m  :<C-u>CocList outline<cr>
+nmap <silent> <space>m  :<C-u>CocList outline<cr>
 
 "==============================================================================
 " NerdTree 插件
 "==============================================================================
 " 打开和关闭NERDTree快捷键
-nnoremap <silent> <space>n :NERDTreeToggle<CR>
-nnoremap <F4> :NERDTreeMirror<CR>
+map <silent> <space>n :NERDTreeToggle<CR>
+map <F4> :NERDTreeMirror<CR>
 
 " 自动定位到nerdtree
-nnoremap <silent> <space>f :NERDTreeFind<CR>zz
+map <silent> <space>f :NERDTreeFind<CR>zz<space>l
 
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
@@ -438,7 +438,7 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.git']
 "==============================================================================
 
 " majutsushi/tagbar 插件打开关闭快捷键
-nnoremap <silent> <F7> :TagbarToggle<CR> 
+map <silent> <F7> :TagbarToggle<CR> 
 
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1       
@@ -476,14 +476,14 @@ fun! GenGoTags()
    execute('!gotags -f tags -R .') 
 endfun
 
-nnoremap <silent> <F8> :call GenGoTags()<CR> 
+map <silent> <F8> :call GenGoTags()<CR> 
 
 "==============================================================================
 "  leaderF -- echo g:Lf_fuzzyMatch_C
 "==============================================================================
-nnoremap <silent> <leader>s :Leaderf --nameOnly file <CR> 
-nnoremap <silent> <Leader>b :Leaderf  --nameOnly buffer <CR> 
-nnoremap <silent> <Leader>f :Leaderf  --nameOnly --cword rg -i <CR> 
+map <silent> <leader>s :Leaderf --nameOnly file <CR> 
+map <silent> <Leader>b :Leaderf  --nameOnly buffer <CR> 
+map <silent> <Leader>f :Leaderf  --nameOnly --cword rg -i <CR> 
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_StlColorscheme = 'one'
@@ -519,8 +519,8 @@ let g:toggle_terminal#position = 'botright'
 " :Yank命令查看当前的循环列表内容
 call yankstack#setup()
 nmap Y y$
-nnoremap <space>p <Plug>yankstack_substitute_older_paste
-" nnoremap <space>P <Plug>yankstack_substitute_newer_paste
+nmap <space>p <Plug>yankstack_substitute_older_paste
+" nmap <space>P <Plug>yankstack_substitute_newer_paste
 
 "==============================================================================
 " vim-easy-align
@@ -556,7 +556,7 @@ set nrformats=alpha,octal,hex
 "==============================================================================
 " 自动注释的时候添加空格
 let g:NERDSpaceDelims=1
-nnoremap <space>c <plug>NERDCommenterToggle
+map <space>c <plug>NERDCommenterToggle
 
 "==============================================================================
 "  其他插件配置
