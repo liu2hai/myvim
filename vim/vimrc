@@ -483,7 +483,7 @@ map <silent> <F8> :call GenGoTags()<CR>
 "==============================================================================
 map <silent> <leader>s :Leaderf --nameOnly file <CR> 
 map <silent> <Leader>b :Leaderf  --nameOnly buffer <CR> 
-map <silent> <Leader>f :Leaderf  --nameOnly --cword rg -i <CR> 
+map <silent> <Leader>f :Leaderf  --nameOnly --cword --stayOpen rg -i <CR> 
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_StlColorscheme = 'one'
