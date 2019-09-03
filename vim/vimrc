@@ -160,9 +160,8 @@ inoremap <C-V> <C-R>0
 nmap <silent> <space>u <C-U>
 nmap <silent> <space>d <C-D>
 
-" 交换`和'
+" 使用精确mark跳转
 nnoremap ' `
-nnoremap ` '
 
 " 搜索的时候保持屏幕在中央
 nnoremap * *zz
@@ -180,21 +179,6 @@ nmap <space>i <C-i>
 " tag跳转重新映射
 nmap <space>] <C-]>
 nmap <space>t <C-t>
-
-"--------------------------------------------------------------------------- 
-" PROGRAMMING SHORTCUTS
-"--------------------------------------------------------------------------- 
-
-" ,g generates the header guard
-" map <leader>g :call IncludeGuard()<CR>
-
-fun! IncludeGuard()
-   let basename = substitute(bufname(""), '.*/', '', '')
-   let guard = '_' . substitute(toupper(basename), '\.', '_', "H")
-   call append(0, "#ifndef " . guard)
-   call append(1, "#define " . guard)
-   call append( line("$"), "#endif // for #ifndef " . guard)
-endfun
 
 "--------------------------------------------------------------------------- 
 " ENCODING SETTINGS
