@@ -545,14 +545,21 @@ let g:NERDSpaceDelims=1
 map <space>c <plug>NERDCommenterToggle
 
 "==============================================================================
+" git 
+"==============================================================================
+" gitgutter
+let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
+
+" fugitive
+nmap <leader>ga :Git add *<CR>
+nmap <leader>gd :Gdiff<CR>
+
+"==============================================================================
 "  其他插件配置
 "==============================================================================
 " markdwon 的快捷键
 map <silent> <F5> <Plug>MarkdownPreview
 map <silent> <F6> <Plug>StopMarkdownPreview
-
-" git setting
-let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
 
 " startify
 let g:startify_change_to_dir = 0
@@ -602,7 +609,9 @@ if has("gui_running")
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
   " terminal color settings
-  colors vgod
+  set t_Co=256
+  colors molokai
+  let g:airline_theme='one'
 endif
 
 "==============================================================================
