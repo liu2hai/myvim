@@ -24,6 +24,7 @@ terminal                                        |myvim-terminal|
 easy-align                                      |myvim-easy-align|
 visual-increment                                |myvim-visual-increment|
 yankstack                                       |myvim-yankstack|
+git                                             |myvim-git|
 
 学习笔记                                        *myvim-note*
 基础                                            |myvim-basic|
@@ -34,7 +35,7 @@ yankstack                                       |myvim-yankstack|
 KeyMapping                                      *myvim-mapping-basic*
 
     leader=","      高频使用映射到space，其次映射到leader，最少使用的映射到ctrl
-                    每个命令使用不要超过3个键
+                    常用命令使用不要超过3个键
 
     <S-H>           下一个tab
     <S-L>           上一个tab
@@ -118,6 +119,12 @@ visual-increment                                *myvim-visual-increment*
 yankstack                                       *myvim-yankstack*
 
     <space>p  粘贴之前的选项
+
+==============================================================================
+git                                             *myvim-git*
+
+    <leader>ga  在当前目录执行:Git add *
+    <leader>gd  对当前buffer的文件执行:Gdiff
 
 ==============================================================================
 commenter                                       *myvim-nerdComenter*
