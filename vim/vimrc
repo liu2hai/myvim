@@ -476,19 +476,14 @@ let g:Lf_ReverseOrder = 1
 "  EasyMotion
 "==============================================================================
 " 使用<space>w, <space>b来跳转
-map <silent><space>w <Plug>(easymotion-w)
+map <silent><space>w <Plug>(easymotion-w) 
 map <silent><space>b <Plug>(easymotion-b)
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 
 "==============================================================================
-"  vim-repeat
-"==============================================================================
-silent! call repeat#set("\<Plug>(easymotion-repeat)", v:count)
-
-"==============================================================================
-"  vim-terminal
+ " vim-terminal
 "==============================================================================
 tnoremap <silent> <F1> <C-W>:ToggleTerminal<CR>
 nnoremap <silent> <F1> :ToggleTerminal<CR>
