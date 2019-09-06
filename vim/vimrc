@@ -222,8 +222,6 @@ Plug 'yianwillis/vimcdoc'
 
 " git plugin
 Plug 'tpope/vim-fugitive'
-
-" 可以在文档侧边中显示 git 信息
 Plug 'airblade/vim-gitgutter'
 
 Plug 'vim-airline/vim-airline'
@@ -256,6 +254,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'triglav/vim-visual-increment'
 Plug 'junegunn/vim-easy-align'
@@ -482,6 +481,11 @@ map <silent><space>b <Plug>(easymotion-b)
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
+
+"==============================================================================
+"  vim-repeat
+"==============================================================================
+silent! call repeat#set("\<Plug>(easymotion-repeat)", v:count)
 
 "==============================================================================
 "  vim-terminal
