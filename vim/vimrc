@@ -214,7 +214,7 @@ endfun
 " 插件开始的位置
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 " Vim 中文文档
