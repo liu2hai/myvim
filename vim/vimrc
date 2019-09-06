@@ -214,7 +214,7 @@ endfun
 " 插件开始的位置
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'majutsushi/tagbar'
 
 " Vim 中文文档
@@ -234,19 +234,19 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'drewtempelmeyer/palenight.vim'
 
 " go 主要插件
-Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'fatih/vim-go', {'tag': '*'}
 
 " 补全插件
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " markdown 插件
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.vim', {'for': ['md', 'markdown']}
 
 " leaderF
 if(has("win32") || has("win64"))
-    Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
+    Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
 else
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 endif
 
 " 文本编辑相关插件
