@@ -12,6 +12,7 @@ myvim-nerdTree	myvim.txt	/*myvim-nerdTree*
 myvim-note	myvim.txt	/*myvim-note*
 myvim-plugins	myvim.txt	/*myvim-plugins*
 myvim-step	myvim.txt	/*myvim-step*
+myvim-surround	myvim.txt	/*myvim-surround*
 myvim-tagbar	myvim.txt	/*myvim-tagbar*
 myvim-terminal	myvim.txt	/*myvim-terminal*
 myvim-vim-go	myvim.txt	/*myvim-vim-go*

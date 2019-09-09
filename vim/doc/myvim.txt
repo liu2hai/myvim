@@ -24,6 +24,7 @@ terminal                                        |myvim-terminal|
 easy-align                                      |myvim-easy-align|
 visual-increment                                |myvim-visual-increment|
 yankstack                                       |myvim-yankstack|
+surround                                        |myvim-surround|
 git                                             |myvim-git|
 
 学习笔记                                        *myvim-note*
@@ -121,6 +122,48 @@ yankstack                                       *myvim-yankstack*
     <space>p  粘贴之前的选项
 
 ==============================================================================
+surround                                        *myvim-surround*
+
+    正常模式
+    -----------
+    ds  ： 删除包围ds", dsb, dbB, dst
+    cs  ： 修改包围cs"b, cst<q>
+    ys  ： 添加包围ysw", yswb
+    yS  ： 添加包围并替换包围文本
+    yss ： 添加一行包围
+    ySs ： 添加包围内容独成一行
+    ySS ： 添加包围内容独成一行
+
+    一些例子：
+    --------------------------------------------
+    "Hello*world!"      cs"'    'Helloworld!'
+    "Hello*world!"      cs"<q>	<q>Helloworld!</q>
+    (( Hello*world! ))  cs(*    (*Hello*world!*)
+    (( Hello*world! ))  cs( *   (* Hello*world! *)
+    <div>Yo!*</div>	    cst<p>  <p>Yo!</p>
+    (   test   )	    cs([    [ test ]
+    (   test   )	    cs(]    [test]
+    (   test   )	    cs)[    [    test    ]
+    (   test   )	    cs)]    [   test   ]
+
+    --------------------------------------------
+    "Hello*world!"   | ds" | Hello world!
+    ({Hello*world!}) | ds{ | (Hello*world!)
+    (123+4*56)/2	 | ds) | 123+456/2
+    <div>Yo!*</div>	 | dst | Yo!
+    
+    --------------------------------------------
+    test	    ysiw'    'test'
+    'test'	    ysi')	 '(test)'
+    'test'	    ysa')	 ('test')
+    foo*testbar	ystb)    foo(test)bar
+    test	    ysaw<pclass="example">	<p class="example">test</p>
+
+    可视模式
+    -----------
+    S ： 选中内容添加包围并独成一行
+     
+==============================================================================
 git                                             *myvim-git*
 
     <leader>ga  在当前目录执行:Git add *
@@ -130,6 +173,7 @@ git                                             *myvim-git*
 commenter                                       *myvim-nerdComenter*
 
     <space>c 注释和反注释选中文本
+    .        该插件支持vim-repeat，可以用.重复上一次操作
 
 ==============================================================================
 NerdTree                                        *myvim-nerdTree*
