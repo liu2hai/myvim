@@ -302,7 +302,9 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 "      "filetypes": ["go"]
 "    }
 "  },
-  "suggest.maxPreviewWidth": 200
+"  " suggest.maxPreviewWidth": 200,
+"  " coc.preferences.extensionUpdateCheck": "weekly",
+"  " signature.floatMaxWidth": 200
 "}
 "
 " 安装coc-list
