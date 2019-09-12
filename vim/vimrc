@@ -229,7 +229,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " 配色方案
 Plug 'rakr/vim-one'
-Plug 'liuchengxu/space-vim-theme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'drewtempelmeyer/palenight.vim'
 
@@ -566,7 +565,7 @@ let g:startify_change_to_dir = 0
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
 "==============================================================================
-" colorscheme --[space_vim_theme, palenight, one, codedark]
+" colorscheme --[palenight, one, codedark]
 " let g:airline_theme -- [ palenight, one, codedark]
 
 function! SetFrontNTheme()
@@ -581,7 +580,7 @@ function! SetFrontNTheme()
         set rop=type:directx,level:0.75,gamma:1.25,contrast:0.25,geom:1,renmode:5,taamode:1
     elseif has("linux")
         set lines=999 columns=999
-        set guifont=Courier\ New:h14
+        set guifont=Source\ Code\ Pro:h14
         colorscheme codedark 
         set background=dark 
         let g:airline_theme='codedark'
