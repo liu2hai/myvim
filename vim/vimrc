@@ -11,6 +11,7 @@ set history=50		" keep 50 lines of command line history
 set ruler		    " show the cursor position all the time
 set autoread		" auto read when file is changed from outside
 set number
+set hidden
 
 filetype off          " necessary to make ftdetect work on Linux
 filetype on           " Enable filetype detection
@@ -20,27 +21,27 @@ filetype plugin on    " Enable filetype-specific plugins
 syntax enable
 syntax on		    " syntax highlight
 set hlsearch		" search highlighting
+set incsearch		" incremental search
 
 set showmatch		" Cursor shows matching ) and }
 set showmode		" Show current mode
 set wildchar=<TAB>	" start wild expansion in the command line using <TAB>
 set wildmenu        " wild char completion menu
-
-" tab show setting
-" only show filename, exclude dir
-set guitablabel=%m%t
-
-" ignore these files while expanding wild chars
-set wildignore+=*.o,*.class,*.pyc,*.swp
+set wildignore+=*.o,*.class,*.pyc,*.swp " ignore these files while expanding wild chars
 
 set autoindent		" auto indentation
 set smartindent     " smart indent
-set incsearch		" incremental search
+set nowritebackup   " no backup file for over write
 set nobackup		" no *~ backup files
 set copyindent		" copy the previous indentation on autoindenting
 set ignorecase		" ignore case when searching
 set smartcase		" ignore case if search pattern is all lowercase,case-sensitive otherwise
 set smarttab		" insert tabs on the start of a line according to context
+
+set expandtab        "replace <TAB> with spaces, use space only
+set tabstop=4        "define <TAB> equal 4 spaces
+set softtabstop=4    " only space
+set shiftwidth=4     " auto indent length
 
 " disable sound on errors
 set noerrorbells
@@ -48,18 +49,17 @@ set novisualbell
 set t_vb=
 set tm=500
 
-set expandtab        "replace <TAB> with spaces, use space only
-set tabstop=4        "define <TAB> equal 4 spaces
-set softtabstop=4    "
-set shiftwidth=4     " auto indent length
-
 set clipboard=unnamed  " share system cliboard
 set winaltkeys=no       " don't use alt key
 
 set splitbelow  " split buffer below
 set splitright  " split buffer right
 
-set laststatus=2 " always show statusline
+set laststatus=2      " always show statusline
+set display+=lastline " Always try to show a paragraph’s last line.
+set guitablabel=%m%t  " tab show setting only show filename, exclude dir
+set pumheight=20      " show 10 items in insert mode complete pop menu
+set cot-=preview      " disable doc preview in omnicomplete
 
 " open cl buffer when a quickfix command be executed
 autocmd QuickFixCmdPost * :cw 
@@ -68,15 +68,14 @@ autocmd QuickFixCmdPost * :cw
 set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-"-----------------------------------------------
-" pmenu
-"-----------------------------------------------
-" show 10 items in insert mode complete pop menu
-set pumheight=20
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
 
-"disable doc preview in omnicomplete
-set cot-=preview 
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
 
+" always show signcolumns
+set signcolumn=yes
 "-----------------------------------------------
 " file type
 "-----------------------------------------------
@@ -316,21 +315,6 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 " 遇到问题，可以重启coc服务
 " :CocRestart
 " ------------------------------------------------------
-" if hidden is not set, TextEdit might fail.
-set hidden
-set nowritebackup
-
-" Better display for messages
-" set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
