@@ -136,8 +136,8 @@ surround                                        *myvim-surround*
 
     一些例子：
     --------------------------------------------
-    "Hello*world!"      cs"'    'Helloworld!'
-    "Hello*world!"      cs"<q>	<q>Helloworld!</q>
+    "Hello*world!"	    cs"'    'Helloworld!'
+    "Hello*world!"	    cs"<q>	<q>Helloworld!</q>
     (( Hello*world! ))  cs(*    (*Hello*world!*)
     (( Hello*world! ))  cs( *   (* Hello*world! *)
     <div>Yo!*</div>	    cst<p>  <p>Yo!</p>
@@ -147,7 +147,7 @@ surround                                        *myvim-surround*
     (   test   )	    cs)]    [   test   ]
 
     --------------------------------------------
-    "Hello*world!"   | ds" | Hello world!
+    "Hello*world!"	 | ds" | Hello world!
     ({Hello*world!}) | ds{ | (Hello*world!)
     (123+4*56)/2	 | ds) | 123+456/2
     <div>Yo!*</div>	 | dst | Yo!
@@ -168,6 +168,7 @@ git                                             *myvim-git*
 
     <leader>ga  在当前目录执行:Git add *
     <leader>gd  对当前buffer的文件执行:Gdiff
+    <leader>gs  打开git status界面，也就是:G
 
 ==============================================================================
 commenter                                       *myvim-nerdComenter*

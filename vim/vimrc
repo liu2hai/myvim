@@ -537,6 +537,7 @@ let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
 " fugitive
 nmap <leader>ga :Git add *<CR>
 nmap <leader>gd :Gdiff<CR>
+nmap <leader>gs :G<CR>
 
 "==============================================================================
 "  其他插件配置
