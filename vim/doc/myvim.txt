@@ -511,6 +511,10 @@ tabpage
      :args *.c  ----- 将当前目录下的全部C文件作为参数
      :argdo %s/to_match/replacement/ge | update ---- 对args命令里获得的全部文件做全局替换命令,e标志表示 忽略改文件中没有to_match内容的错误
 
+     批量设置文件格式为unix：
+     1. :args ./**/*.go
+     2. :argdo set ff=unix | update
+
 组合命令：
      光标移动很重要，可以配合很多命令来完成功能，一般的模式是：<start position> <cmd> <end position>，如0y$
      还有常用的就是<cmd><end position>，比如说d$, dw，dj, y2j。y2j是复制当前行和其下2行，因为y是动作，2j就是2次执行j所到达的行。
