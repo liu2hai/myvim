@@ -578,6 +578,8 @@ function! SetFrontNTheme()
         colorscheme one 
         set background=dark 
         let g:airline_theme='one'
+        " mac vim anti alias
+        set antialias
     endif 
 endfunction
 
