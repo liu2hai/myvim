@@ -223,12 +223,12 @@ Plug 'yianwillis/vimcdoc'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " 配色方案
 Plug 'rakr/vim-one'
-Plug 'tomasiser/vim-code-dark'
 Plug 'drewtempelmeyer/palenight.vim'
 
 " go 主要插件
@@ -242,9 +242,9 @@ Plug 'iamcco/markdown-preview.vim', {'for': ['md', 'markdown']}
 
 " leaderF
 if(has("win32") || has("win64"))
-    Plug 'Yggdroot/LeaderF', {'do': '.\install.bat'}
+    Plug 'Yggdroot/LeaderF', {'do': '.\install.bat', 'branch': 'master'}
 else
-    Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
+    Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'branch': 'master'}
 endif
 
 " 文本编辑相关插件
@@ -553,8 +553,8 @@ let g:startify_change_to_dir = 0
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
 "==============================================================================
-" colorscheme --[palenight, one, codedark]
-" let g:airline_theme -- [ palenight, one, codedark]
+" colorscheme --[palenight, one]
+" let g:airline_theme -- [ palenight, one]
 
 function! SetFrontNTheme()
     if(has("win32") || has("win64"))
@@ -569,17 +569,16 @@ function! SetFrontNTheme()
     elseif has("linux")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h14
-        colorscheme codedark 
+        colorscheme one 
         set background=dark 
-        let g:airline_theme='codedark'
+        let g:airline_theme='one'
     elseif has("mac")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h18
         colorscheme one 
         set background=dark 
         let g:airline_theme='one'
-        " mac vim anti alias
-        set antialias
+        set antialias " mac vim anti alias
     endif 
 endfunction
 
