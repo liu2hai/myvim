@@ -59,6 +59,7 @@ KeyMapping                                      *myvim-mapping-basic*
     <space>i        原来的ctrl-i，jumplist跳向前
     <space>]        原来的ctrl-], tag跳转定义
     <space>t        原来的ctrl-t, tag跳转回原来的位置
+    <space>r        原来的ctrl-^, buffer切换
 
 ==============================================================================
 插件用法                                        只记录常用的快捷键
