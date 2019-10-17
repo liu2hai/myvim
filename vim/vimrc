@@ -397,7 +397,7 @@ map <silent> <space>n :NERDTreeToggle<CR>
 map <F4> :NERDTreeMirror<CR>
 
 " 自动定位到nerdtree
-map <silent> <space>f :NERDTreeFind<CR>zz<space>l
+map <silent> <space>f :NERDTreeFind<CR>zz
 
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
