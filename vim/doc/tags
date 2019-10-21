@@ -15,6 +15,7 @@ myvim-step	myvim.txt	/*myvim-step*
 myvim-surround	myvim.txt	/*myvim-surround*
 myvim-tagbar	myvim.txt	/*myvim-tagbar*
 myvim-terminal	myvim.txt	/*myvim-terminal*
+myvim-trailing-whitespace	myvim.txt	/*myvim-trailing-whitespace*
 myvim-vim-go	myvim.txt	/*myvim-vim-go*
 myvim-visual-increment	myvim.txt	/*myvim-visual-increment*
 myvim-yankstack	myvim.txt	/*myvim-yankstack*

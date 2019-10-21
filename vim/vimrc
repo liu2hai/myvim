@@ -62,7 +62,7 @@ set pumheight=20      " show 10 items in insert mode complete pop menu
 set cot-=preview      " disable doc preview in omnicomplete
 
 " open cl buffer when a quickfix command be executed
-autocmd QuickFixCmdPost * :cw 
+autocmd QuickFixCmdPost * :cw
 
 " 最后编辑的文件保存光标，下次打开该文件自动停留在上次编辑的地方
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -107,9 +107,9 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 " -- cindent
 autocmd FileType c,cpp,cc  set cindent
 
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " USEFUL SHORTCUTS
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " set leader to ,
 let mapleader=","
 let g:mapleader=","
@@ -122,15 +122,15 @@ map <silent> <space>l :wincmd l<CR>
 
 " move around tabs. conflict with the original screen top/bottom
 " comment them out if you want the original H/L
-" go to prev tab 
+" go to prev tab
 map <S-H> gT
 " go to next tab
 map <S-L> gt
 
 " new tab
-map <leader>tn :tabnew<CR> 
+map <leader>tn :tabnew<CR>
 " close tab
-map <leader>tc :tabclose<CR> 
+map <leader>tc :tabclose<CR>
 " tab only
 map <space>q :tabo<CR>
 
@@ -182,24 +182,24 @@ nmap <space>t <C-t>
 " buffer切换
 nmap <space>r <C-^>
 
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " ENCODING SETTINGS
-"--------------------------------------------------------------------------- 
-set encoding=utf-8                                  
+"---------------------------------------------------------------------------
+set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1,cp936,gbk,gb18030
 
-lang messages zh_CN.UTF-8 " 解决consle输出乱码 
-" lang messages en_Us.UTF-8 " 解决consle输出乱码 
+lang messages zh_CN.UTF-8 " 解决consle输出乱码
+" lang messages en_Us.UTF-8 " 解决consle输出乱码
 
 fun! ViewUTF8()
-	set encoding=utf-8                                  
+	set encoding=utf-8
 	set termencoding=big5
 endfun
 
 fun! UTF8()
-	set encoding=utf-8                                  
+	set encoding=utf-8
 	set termencoding=big5
 	set fileencoding=utf-8
 	set fileencodings=ucs-bom,big5,utf-8,latin1
@@ -210,9 +210,9 @@ fun! Big5()
 	set fileencoding=big5
 endfun
 
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " PLUGIN SETTINGS
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " 插件开始的位置
 call plug#begin('~/.vim/plugged')
 
@@ -259,6 +259,7 @@ Plug 'tpope/vim-repeat'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'triglav/vim-visual-increment'
 Plug 'junegunn/vim-easy-align'
+Plug 'bronson/vim-trailing-whitespace'
 
 " toggle terminal
 Plug 'pakutoma/toggle-terminal'
@@ -289,7 +290,7 @@ let g:go_highlight_generate_tags = 1
 
 let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
-let g:go_def_mapping_enabled = 0 
+let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0 " use coc' K
 
 "==============================================================================
@@ -410,10 +411,10 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.git']
 "==============================================================================
 
 " majutsushi/tagbar 插件打开关闭快捷键
-map <silent> <F7> :TagbarToggle<CR> 
+map <silent> <F7> :TagbarToggle<CR>
 
 " set focus to TagBar when opening it
-let g:tagbar_autofocus = 1       
+let g:tagbar_autofocus = 1
 
 "gotag使用方法: gotags -f tags -R .
 let g:tagbar_type_go = {
@@ -445,17 +446,17 @@ let g:tagbar_type_go = {
 \ }
 
 fun! GenGoTags()
-   execute('!gotags -f tags -R .') 
+   execute('!gotags -f tags -R .')
 endfun
 
-map <silent> <F8> :call GenGoTags()<CR> 
+map <silent> <F8> :call GenGoTags()<CR>
 
 "==============================================================================
 "  leaderF -- echo g:Lf_fuzzyMatch_C
 "==============================================================================
-map <silent> <leader>s :Leaderf --nameOnly file <CR> 
-map <silent> <Leader>b :Leaderf  --nameOnly buffer <CR> 
-map <silent> <Leader>f :Leaderf  --nameOnly --cword --stayOpen rg -i <CR> 
+map <silent> <leader>s :Leaderf --nameOnly file <CR>
+map <silent> <Leader>b :Leaderf  --nameOnly buffer <CR>
+map <silent> <Leader>f :Leaderf  --nameOnly --cword --stayOpen rg -i <CR>
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_StlColorscheme = 'one'
@@ -533,7 +534,7 @@ let g:NERDSpaceDelims=1
 map <space>c <plug>NERDCommenterToggle
 
 "==============================================================================
-" git 
+" git
 "==============================================================================
 " gitgutter
 let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
@@ -553,6 +554,9 @@ map <silent> <F6> <Plug>StopMarkdownPreview
 " startify
 let g:startify_change_to_dir = 0
 
+" trailing-whitespace
+map <silent> <leader><space> :FixWhitespace<CR>
+
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
 "==============================================================================
@@ -563,8 +567,8 @@ function! SetFrontNTheme()
     if(has("win32") || has("win64"))
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
         set guifont=Source\ Code\ Pro:h13
-        colorscheme palenight 
-        set background=dark 
+        colorscheme palenight
+        set background=dark
         let g:airline_theme='palenight'
 
         " 使用directx渲染,需要gvim支持directx -- :version
@@ -572,20 +576,20 @@ function! SetFrontNTheme()
     elseif has("linux")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h14
-        colorscheme one 
-        set background=dark 
+        colorscheme one
+        set background=dark
         let g:airline_theme='one'
     elseif has("mac")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h18
-        colorscheme one 
-        set background=dark 
+        colorscheme one
+        set background=dark
         let g:airline_theme='one'
         set antialias " mac vim anti alias
-    endif 
+    endif
 endfunction
 
-if has("gui_running")	
+if has("gui_running")
   set guioptions -=T    " not toolbar
   set guioptions -=m    " not menubar
   set guioptions -=b    " not bottom scroll bar

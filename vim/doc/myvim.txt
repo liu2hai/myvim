@@ -26,6 +26,7 @@ visual-increment                                |myvim-visual-increment|
 yankstack                                       |myvim-yankstack|
 surround                                        |myvim-surround|
 git                                             |myvim-git|
+trailing-whitespace                             |myvim-trailing-whitespace|
 
 学习笔记                                        *myvim-note*
 基础                                            |myvim-basic|
@@ -63,14 +64,14 @@ KeyMapping                                      *myvim-mapping-basic*
 
 ==============================================================================
 插件用法                                        只记录常用的快捷键
-   
+
 vim-go                                          *myvim-vim-go*
 
     :GoInstallBinaries    安装必须要的go tool bin
 ==============================================================================
 
 coc.nvim                                        *myvim-coc*
-    
+
     <C-j>   输入模式下强行刷新补齐
     [c      上一个错误提示
     ]c      下一个错误提示
@@ -98,7 +99,7 @@ leaderF                                         *myvim-leaderF*
 ==============================================================================
 easyMotion                                      *myvim-easyMotion*
 
-    <space>w       往前跳 
+    <space>w       往前跳
     <space>b       往后跳
 
 ==============================================================================
@@ -113,7 +114,7 @@ easy-align                                      *myvim-easy-align*
 
 ==============================================================================
 visual-increment                                *myvim-visual-increment*
-    
+
     <C-a>  选中文本，增加
     <C-x>  选中文本，减少
 
@@ -152,7 +153,7 @@ surround                                        *myvim-surround*
     ({Hello*world!}) | ds{ | (Hello*world!)
     (123+4*56)/2	 | ds) | 123+456/2
     <div>Yo!*</div>	 | dst | Yo!
-    
+
     --------------------------------------------
     test	    ysiw'    'test'
     'test'	    ysi')	 '(test)'
@@ -163,13 +164,18 @@ surround                                        *myvim-surround*
     可视模式
     -----------
     S ： 选中内容添加包围并独成一行
-     
+
 ==============================================================================
 git                                             *myvim-git*
 
     <leader>ga  在当前目录执行:Git add *
     <leader>gd  对当前buffer的文件执行:Gdiff
     <leader>gs  打开git status界面，也就是:G
+
+==============================================================================
+trailing-whitespace                             *myvim-trailing-whitespace*
+
+    <leader><space>  去掉当前文件的行位的空格，:FixWhitespace<CR>
 
 ==============================================================================
 commenter                                       *myvim-nerdComenter*
@@ -179,7 +185,7 @@ commenter                                       *myvim-nerdComenter*
 
 ==============================================================================
 NerdTree                                        *myvim-nerdTree*
-    
+
     <space>n    显示和关闭nerdtree
     <space>f    定位当前buffer在nerdtree的位置
 
@@ -265,7 +271,7 @@ NerdTree                                        *myvim-nerdTree*
      yiw --  复制一个单词，光标可以在单词的任何位置
      yaw --  复制一个单词，包括其左边的空格
      viw --  选中一个单词，进入visual模式，光标可以在单词的任何位置 注：iw其实是inner word的意思
-     
+
      is  --  inner statement 一个句子
      vis --  选中一个句子，在erlang中就是一个函数
      dis --  删除一个句子
@@ -303,7 +309,7 @@ NerdTree                                        *myvim-nerdTree*
      D -----等同于d$
      C -----等同于c$
      S  ------ 删除整行，并进入插入模式
-     
+
      c{motion} ---如上面的cw, c$， c是change的意思
      d{motion}  --- 如dw, de, dtX
      t ---- 是until的意思，所以dtX是删除字符直到遇到X。
@@ -330,7 +336,7 @@ NerdTree                                        *myvim-nerdTree*
 
      ga   ----- 显示光标所在位置的ascii码，包括(10, 16进制）。
      g8 ----- 显示光标所在字符的utf8编码。
- 
+
      gf   -----  打开当前光标下路径所指的文件，或者是Include里的头文件。和a.vim插件里的:IHS（我配置里alt-i）命令差不多
      gt  ---- 下一个标签页
      gT ----  上一个标签页
@@ -369,7 +375,7 @@ NerdTree                                        *myvim-nerdTree*
 
      zz   ----- 将当前行滚动到屏幕的中间，没有改变光标位置，只是滚动屏幕
      zt   ------- 将当前行滚动到屏幕最上方
-     zb  ------- 将当前行滚动到屏幕最下方   
+     zb  ------- 将当前行滚动到屏幕最下方
 
      zh  ------ 屏幕往左滚一列
      zl   ------ 屏幕往右滚一列
@@ -437,7 +443,7 @@ NerdTree                                        *myvim-nerdTree*
        g,   ------- 跳到下一个修改的位置
        '.    --------跳到文件最后修改处，即使关闭vim重启后也可以
 
-  tags  
+  tags
       在源代码目录src下，使用
        ctags *.c  或  ctags  *.cpp   或 ctags *.erl
       如果在顶层目录，则可以使用-R选项递归扫描目录，只生成一个tag文件，
@@ -447,19 +453,19 @@ NerdTree                                        *myvim-nerdTree*
       Ctrl + ]   -----   光标在函数上时，跳到函数的定义（函数， 变量， 结构体， 宏等都可以）
       Ctrl + t   -----   跳转回上一个标签
       Ctrl-w -]  ----- 在当前tab里分割一个预览窗口显示tag的定义
-      
+
       :tag foo 或 :ta foo  -----   跳到标签foo处，foo可以是函数名，变量名，结构体名，宏
       :ptag foo 或 :pta foo ---- 在预览窗口打开标签foo处，光标位置不会发生改变，我的配置,pt
       :pclose  或 :pc  ----- 关闭预览窗口，我的配置,pc
 
       :ts foo  --- 列出全部的foo标签, ts是tselect的缩写
-      g]   ----- tselect光标所在的标签上 
+      g]   ----- tselect光标所在的标签上
 
        如果一个符号对应多个tag:
       :tn  -----  跳到下一个
       :tp  -----  跳到前一个
       :ts  ---- 列出全部，即:tselect
-                      
+
       在erlang中，ctags只会对函数，宏建立tag，所以跳转也是针对这2个
 
 tabpage
@@ -482,7 +488,7 @@ tabpage
      :s/to_match/replacement       在当前行用replacement去替换第一个to_match字符串
      :1,10s/to_match/replacement       在第1行到第10行（包括第1和第10）用replacement去替换第一个to_match字符串
      :10s/to_match/replacement       在第10行用replacement去替换第一个to_match字符串
-     :s/to_match/replacement/g    在当前行用replacement去替换全部to_match字符串 
+     :s/to_match/replacement/g    在当前行用replacement去替换全部to_match字符串
      :%s/to_match/replacement/g  在全篇文章中替换匹配的字符串，g是选项表示全部替换，否则只替换第一个
                                                     选项还有c -- confirm 询问， i -- ignore，忽略大小写， e --- error 忽略错误
                                                     选项可以组合用，如cgi, gie等
@@ -501,7 +507,7 @@ tabpage
 
      搜索指定目录的全部文件，vimgrep
      :vimgrep  /to_match/j  **    (j是指只更新quickfix窗口，不跳转， **是指当前目录的全部文件)
-     :vimgrep /to_match/j  *.c  *.h 
+     :vimgrep /to_match/j  *.c  *.h
      :vimgrep /to_match/j   src/*  include/*
      :vimgrepa ----- 将搜索结果加到当前的quickfix窗口，而不是另开一个
 
@@ -540,7 +546,7 @@ tabpage
      gg=G  ---- 全篇文章缩进
      =a{   ---- 缩进当前{}块里的代码块，包括{本身也参与缩进
      =j   ----- 缩进当前行和下一行
-  
+
      gq   ------ 重新排版，假如已经设定行宽的话(:set textwidth = 78)，gq命令会格式化选中文本，
                     将行宽设定为指定的， gq是一个命令，一般是gq{motion}，常用的组合有：
                      gqq  ----  排版一行
@@ -571,7 +577,7 @@ tabpage
                          其实Ctrl-r<register>就是在插入模式下粘贴寄存器内容的快捷键
     Ctrl-r Ctrl-w ---- 命令模式下将当前光标下的单词（短单词word）粘贴到命令行
     Ctrl-r Ctrl-a -----命令模式下将当前光标下的单词（长单词WORD）粘贴到命令行
-     
+
 补全
      Ctrl-n ---- 在插入模式下，输入字符然后，按下Ctrl + n。
      Ctrl-p  -----也是自动补齐，本次vim进程出现的所有单词。
@@ -584,7 +590,7 @@ tabpage
      Home, End ---- 行首，行尾
      Ctrl-a  ---- 插入模式下，重复输入自从上次Normal mode以来输入的内容，非常有用
      Ctrl-r 0 ---- 插入模式下，粘贴寄存器的内容, 0就是第二个寄存器
- 
+
     其实在VIM中尽量少在插入模式下，除了输入的时候，都要呆在Normal模式，这样效率更高。
 
 插入模式到normal模式：
@@ -631,7 +637,7 @@ tabpage
 
        转换完后，可以编辑hex文件。将hex转换回来：
        :%!xxd -r
-       
+
 编译程序
         在VIM中可以直接编译程序，使用
         :make  -----  会调用gnumake编译当前目录下的Makefile，并将错误显示到quickfix窗口
@@ -641,7 +647,7 @@ tabpage
 崩溃恢复
       使用 -r 参数启动vim，打开对应的swap文件
       vim -r xx.swap
- 
+
 4. 分屏
      分屏启动vim，大写的O来垂直分屏，n是文件数量
      vim -On file1  file2
@@ -652,7 +658,7 @@ tabpage
      Ctrl+w c  -- 关闭当前分屏
      Ctrl+w s  -- 水平分割当前打开的文件
      Ctrl+w v  --  垂直分割当前打开的文件
-     
+
      :sp filename --- 水平分割，并打开新文件，没有filename默认是打开当前文件
      :vsp (或者 :vs ) filename --- 垂直分割，并打开新文件，没有filename默认是打开当前文件
 
@@ -662,8 +668,8 @@ tabpage
      Ctrl+w =  ---- 所有屏具有相同高度
      Ctrl+w N+  ---- 增加高度，N为数字
      Ctrl+w N-  ---- 减少高度
-     Ctrl+w N>  ---- 增加宽度     
-     Ctrl+w N<  ---- 减少宽度     
+     Ctrl+w N>  ---- 增加宽度
+     Ctrl+w N<  ---- 减少宽度
 
 buffer, window, tab
      buffer ---- 一个打开的文件，buffer是最新的，已修改但尚未保存的内容都在buffer里。
