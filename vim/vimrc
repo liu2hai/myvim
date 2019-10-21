@@ -233,6 +233,7 @@ Plug 'vim-airline/vim-airline-themes'
 " 配色方案
 Plug 'rakr/vim-one'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'arcticicestudio/nord-vim'
 
 " go 主要插件
 Plug 'fatih/vim-go', {'tag': '*'}
@@ -560,15 +561,15 @@ map <silent> <leader><space> :FixWhitespace<CR>
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
 "==============================================================================
-" colorscheme --[palenight, one]
-" let g:airline_theme -- [ palenight, one]
+" colorscheme --[palenight, one, nord]
+" let g:airline_theme -- [ palenight, one, nord]
 
 function! SetFrontNTheme()
     if(has("win32") || has("win64"))
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
         set guifont=Source\ Code\ Pro:h13
-        colorscheme palenight
         set background=dark
+        colorscheme palenight
         let g:airline_theme='palenight'
 
         " 使用directx渲染,需要gvim支持directx -- :version
