@@ -236,7 +236,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'arcticicestudio/nord-vim'
 
 " go 主要插件
-Plug 'fatih/vim-go', {'tag': '*'}
+Plug 'fatih/vim-go', {'tag': '*', 'for': ['go']}
 
 " 补全插件
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
