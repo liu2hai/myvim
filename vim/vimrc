@@ -193,56 +193,37 @@ set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1,cp936,gbk,gb18030
 lang messages zh_CN.UTF-8 " 解决consle输出乱码
 " lang messages en_Us.UTF-8 " 解决consle输出乱码
 
-fun! ViewUTF8()
-	set encoding=utf-8
-	set termencoding=big5
-endfun
-
-fun! UTF8()
-	set encoding=utf-8
-	set termencoding=big5
-	set fileencoding=utf-8
-	set fileencodings=ucs-bom,big5,utf-8,latin1
-endfun
-
-fun! Big5()
-	set encoding=big5
-	set fileencoding=big5
-endfun
-
 "---------------------------------------------------------------------------
 " PLUGIN SETTINGS
 "---------------------------------------------------------------------------
 " 插件开始的位置
 call plug#begin('~/.vim/plugged')
-
-Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-
 " Vim 中文文档
 Plug 'yianwillis/vimcdoc'
 
-" git plugin
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" git plugin
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 " 配色方案
 Plug 'rakr/vim-one'
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'arcticicestudio/nord-vim'
 
 " go 主要插件
-Plug 'fatih/vim-go', {'tag': '*', 'for': ['go']}
-
-" 补全插件
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'fatih/vim-go', {'tag': '*'}
 
 " markdown 插件
 Plug 'iamcco/markdown-preview.vim', {'for': ['md', 'markdown']}
+
+" 补全插件
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " leaderF
 if(has("win32") || has("win64"))
@@ -410,7 +391,6 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.git']
 "==============================================================================
 "  majutsushi/tagbar 插件
 "==============================================================================
-
 " majutsushi/tagbar 插件打开关闭快捷键
 map <silent> <F7> :TagbarToggle<CR>
 
@@ -561,8 +541,8 @@ map <silent> <leader><space> :FixWhitespace<CR>
 "==============================================================================
 " GUI的设置要放在最后，加载完插件后
 "==============================================================================
-" colorscheme --[palenight, one, nord]
-" let g:airline_theme -- [ palenight, one, nord]
+" colorscheme --[palenight, one]
+" let g:airline_theme -- [ palenight, one]
 
 function! SetFrontNTheme()
     if(has("win32") || has("win64"))
@@ -577,14 +557,14 @@ function! SetFrontNTheme()
     elseif has("linux")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h14
-        colorscheme one
         set background=dark
+        colorscheme one
         let g:airline_theme='one'
     elseif has("mac")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h18
-        colorscheme one
         set background=dark
+        colorscheme one
         let g:airline_theme='one'
         set antialias " mac vim anti alias
     endif
@@ -601,7 +581,7 @@ if has("gui_running")
 
   :call SetFrontNTheme()
   set cursorline        " highlight current line
-  highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
+  highlight CursorLine  guibg=#3B4252 ctermbg=none  gui=none cterm=none
 else
   " terminal color settings
   set t_Co=256
