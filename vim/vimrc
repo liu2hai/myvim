@@ -566,6 +566,7 @@ function! SetFrontNTheme()
     elseif has("mac")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h18
+        set gfw=Source\ Code\ Pro:h18
         set background=dark
         colorscheme one
         let g:airline_theme='one'
