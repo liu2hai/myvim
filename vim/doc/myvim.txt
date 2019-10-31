@@ -43,6 +43,7 @@ KeyMapping                                      *myvim-mapping-basic*
     <S-L>           上一个tab
     <leader>tn      新tab
     <leader>tc      关闭tab
+    <leader>to      关闭其他tab，只保留当前tab
     <leader>/       取消高亮
     <leader>ps      打开关闭粘贴模式
     <leader>cd      切换当前目录到当前buffer所在目录
@@ -52,13 +53,13 @@ KeyMapping                                      *myvim-mapping-basic*
     <C-v>           命令模式和输入模式下粘贴0号寄存器
 
     <space>jkhl     窗口光标移动
-    <space>q        只保留当前tab，其他的关闭
+    <space>q        关闭当前buffer
 
     <space>u        向前翻半页
     <space>d        向后翻半页
     <space>o        原来的ctrl-o，jumplist跳回来
     <space>i        原来的ctrl-i，jumplist跳向前
-    <space>]        原来的ctrl-], tag跳转定义
+    <space>]        原来的ctrl-W ], tag跳转定义，在新窗口打开
     <space>t        原来的ctrl-t, tag跳转回原来的位置
     <space>r        原来的ctrl-^, buffer切换
     <space>e        刷新当前文件，:e<cr>

@@ -132,7 +132,7 @@ map <leader>tn :tabnew<CR>
 " close tab
 map <leader>tc :tabclose<CR>
 " tab only
-map <space>q :tabo<CR>
+map <leader>to :tabo<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -176,11 +176,14 @@ nmap <space>o <C-o>
 nmap <space>i <C-i>
 
 " tag跳转重新映射
-nmap <space>] <C-]>
+nmap <space>] <C-w>]
 nmap <space>t <C-t>
 
 " buffer切换
 nmap <space>r <C-^>
+
+" 关闭当前buffer
+nmap <space>q :q<CR>
 
 " 刷新文件内容
 nmap <silent> <space>e :e<CR>
@@ -204,31 +207,31 @@ call plug#begin('~/.vim/plugged')
 " Vim 中文文档
 Plug 'yianwillis/vimcdoc'
 
+" 界面插件
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-
-" airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" git plugin
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'pakutoma/toggle-terminal'
+Plug 'mhinz/vim-startify'
 
 " 配色方案
 Plug 'rakr/vim-one'
 Plug 'drewtempelmeyer/palenight.vim'
 
-" go 主要插件
-Plug 'fatih/vim-go', {'tag': '*'}
+" git plugin
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-" markdown 插件
+" 语言相关插件
+Plug 'fatih/vim-go', {'tag': '*'}
 Plug 'iamcco/markdown-preview.vim', {'for': ['md', 'markdown']}
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp', 'c', 'cc', 'h', 'hpp']}
 
 " 补全插件
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" leaderF
+" 模糊查找
 if(has("win32") || has("win64"))
     Plug 'Yggdroot/LeaderF', {'do': '.\install.bat', 'branch': 'master'}
 else
@@ -245,12 +248,6 @@ Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'triglav/vim-visual-increment'
 Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
-
-" toggle terminal
-Plug 'pakutoma/toggle-terminal'
-
-" 启动屏插件
-Plug 'mhinz/vim-startify'
 
 " 插件结束的位置，插件全部放在此行上面
 call plug#end()
@@ -527,6 +524,14 @@ let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
 nmap <leader>ga :Git add *<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gs :G<CR>
+
+"==============================================================================
+" cpp highlight
+"==============================================================================
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_template_highlight = 1
 
 "==============================================================================
 "  其他插件配置
