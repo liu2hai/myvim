@@ -249,6 +249,10 @@ Plug 'triglav/vim-visual-increment'
 Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
 
+" textobj -- A text object for any of '', "", (), {}, [] and <>
+Plug 'kana/vim-textobj-user'
+Plug 'rhysd/vim-textobj-anyblock'
+
 " 插件结束的位置，插件全部放在此行上面
 call plug#end()
 
