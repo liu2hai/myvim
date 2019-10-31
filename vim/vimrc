@@ -294,7 +294,6 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 "  },
 "  " suggest.maxPreviewWidth": 200,
 "  " coc.preferences.extensionUpdateCheck": "weekly",
-"  "coc.preferences.jumpCommand": "split",
 "  " signature.floatMaxWidth": 200
 "}
 "
@@ -334,8 +333,8 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gd :call CocAction('jumpDefinition')<CR>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> g] :call CocAction('jumpDefinition', 'split')<CR>
 
 " 列出当前光标所在单词的引用
 nmap <silent> gr <Plug>(coc-references)
