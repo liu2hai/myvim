@@ -19,6 +19,11 @@ windows下可以用bin/win/rg.exe，mac和Linux请参照
 ```
 https://github.com/BurntSushi/ripgrep
 ```
++ universal-ctags
+使用Universal-ctags代替exuberant-ctags，因为后者多年没有更新了
+```
+https://github.com/universal-ctags/ctags
+```
 
 ### 启动
 安装好vim后，将vim文件夹拷贝到安装目录。
