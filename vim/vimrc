@@ -299,8 +299,7 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 "    }
 "  },
 "  " suggest.maxPreviewWidth": 200,
-"  " coc.preferences.extensionUpdateCheck": "weekly",
-"  " signature.floatMaxWidth": 200
+"  " coc.preferences.extensionUpdateCheck": "weekly"
 "}
 "
 " 安装coc-list
