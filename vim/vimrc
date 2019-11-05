@@ -337,8 +337,11 @@ nmap <silent> g] :call CocAction('jumpDefinition', 'split')<CR>
 
 " 列出当前光标所在单词的引用
 nmap <silent> gr <Plug>(coc-references)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+
+" Remap for rename current word -- 重命名当前光标所在单词
+nmap <leader>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window
 nnoremap <silent>K :call <SID>show_documentation()<CR>
@@ -354,8 +357,6 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word -- 重命名当前光标所在单词
-nmap <leader>rn <Plug>(coc-rename)
 
 augroup mygroup
   autocmd!
