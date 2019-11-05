@@ -395,8 +395,8 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.git']
 "  leaderF -- echo g:Lf_fuzzyMatch_C
 "==============================================================================
 map <silent> <leader>s :Leaderf --nameOnly file<CR>
-map <silent> <Leader>b :Leaderf --nameOnly buffer<CR>
-map <silent> <Leader>f :Leaderf --nameOnly --cword --stayOpen rg -i<CR>
+map <silent> <leader>b :Leaderf --nameOnly buffer<CR>
+map <silent> <leader>f :Leaderf --nameOnly --cword --stayOpen rg -i<CR>
 map <silent> <space>m  :LeaderfFunction<CR>
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
@@ -407,7 +407,7 @@ let g:Lf_ReverseOrder = 1
 "  ctags -- 手动生成tags文件，因为那些自动索引工具在大项目的时候实在太卡了
 "==============================================================================
 fun! GenTagFile()
-   execute('!ctags -R --c++-kinds=+px --c-kinds=+px --fields=+niazS --extra=+q')
+   execute('!ctags -R --c++-kinds=+px --c-kinds=+px --fields=+niazS --extras=+q')
 endfun
 
 map <silent> <F8> :call GenTagFile()<CR>
@@ -416,8 +416,8 @@ map <silent> <F8> :call GenTagFile()<CR>
 "  EasyMotion
 "==============================================================================
 " 使用<space>w, <space>b来跳转
-map <silent><space>w <Plug>(easymotion-w)
-map <silent><space>b <Plug>(easymotion-b)
+map <silent> <space>w <Plug>(easymotion-w)
+map <silent> <space>b <Plug>(easymotion-b)
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
