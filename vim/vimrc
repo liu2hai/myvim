@@ -121,8 +121,6 @@ map <silent> <space>k :wincmd k<CR>
 map <silent> <space>h :wincmd h<CR>
 map <silent> <space>l :wincmd l<CR>
 
-" move around tabs. conflict with the original screen top/bottom
-" comment them out if you want the original H/L
 " go to prev tab
 map <S-H> gT
 " go to next tab
@@ -156,7 +154,7 @@ vnoremap > >gv
 cnoremap <C-V> <C-R>0
 inoremap <C-V> <C-R>0
 
-" 代替c-u, c-d翻页
+" 代替c-u, c-d翻半页
 nmap <silent> <space>u <C-U>
 nmap <silent> <space>d <C-D>
 
@@ -357,7 +355,6 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -535,7 +532,7 @@ map <silent> <leader><space> :FixWhitespace<CR>
 function! SetFrontNTheme()
     if(has("win32") || has("win64"))
         au GUIEnter * simalt ~x  " 设置启动时窗口的大小
-        set guifont=Source\ Code\ Pro:h13
+        set guifont=Source\ Code\ Pro:h13.5
         set background=dark
         colorscheme palenight
         let g:airline_theme='palenight'
