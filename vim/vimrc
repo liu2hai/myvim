@@ -568,12 +568,17 @@ if has("gui_running")
 
   :call SetFrontNTheme()
   set cursorline        " highlight current line
-  highlight CursorLine  guibg=#3B4252 ctermbg=none  gui=none cterm=none
+  highlight CursorLine  guibg=#3B4252 gui=none
+  highlight MatchParen  guifg=#EBCB8B gui=bold
 else
   " terminal color settings
   set t_Co=256
   colors molokai
   let g:airline_theme='one'
+  if has("mac")
+      set guifont=Source\ Code\ Pro:h18
+      set gfw=Source\ Code\ Pro:h18
+  endif
 endif
 
 "==============================================================================
