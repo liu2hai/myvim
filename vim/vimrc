@@ -532,14 +532,17 @@ map <silent> <leader><space> :FixWhitespace<CR>
 
 function! SetFrontNTheme()
     if(has("win32") || has("win64"))
-        au GUIEnter * simalt ~x  " 设置启动时窗口的大小
-        set guifont=Source\ Code\ Pro:h13.5
+        set guifont=Source\ Code\ Pro:h13.3
         set background=dark
         colorscheme palenight
         let g:airline_theme='palenight'
 
         " 使用directx渲染,需要gvim支持directx -- :version
         set rop=type:directx,level:0.75,gamma:1.25,contrast:0.25,geom:1,renmode:5,taamode:1
+        " 设置启动时窗口的大小
+        au GUIEnter * simalt ~x
+        " gvim 全屏
+        map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
     elseif has("linux")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h14
@@ -571,7 +574,6 @@ if has("gui_running")
   highlight CursorLine  guibg=#3B4252 gui=none
   highlight MatchParen  guifg=#EBCB8B gui=bold
 else
-  " terminal color settings
   set t_Co=256
   colors molokai
   let g:airline_theme='one'
