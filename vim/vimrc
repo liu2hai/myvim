@@ -532,7 +532,7 @@ map <silent> <leader><space> :FixWhitespace<CR>
 
 function! SetFrontNTheme()
     if(has("win32") || has("win64"))
-        set guifont=Source\ Code\ Pro:h13.3
+        set guifont=Source\ Code\ Pro:h13.5
         set background=dark
         colorscheme palenight
         let g:airline_theme='palenight'
