@@ -77,6 +77,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+set tags=./.tags;,.tags
 "-----------------------------------------------
 " file type
 "-----------------------------------------------
@@ -406,7 +407,7 @@ let g:Lf_ReverseOrder = 1
 "  ctags -- 手动生成tags文件，因为那些自动索引工具在大项目的时候实在太卡了
 "==============================================================================
 fun! GenTagFile()
-   execute('!ctags -R --c++-kinds=+px --c-kinds=+px --fields=+niazS --extras=+q')
+   execute('!ctags -R -a -o .tags --c++-kinds=+px --c-kinds=+px --fields=+niazS --extras=+q')
 endfun
 
 map <silent> <F8> :call GenTagFile()<CR>
@@ -543,12 +544,6 @@ function! SetFrontNTheme()
         au GUIEnter * simalt ~x
         " gvim 全屏
         map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-    elseif has("unix")
-        set lines=999 columns=999
-        set guifont=Source\ Code\ Pro\ 13.5
-        set background=dark
-        colorscheme one
-        let g:airline_theme='one'
     elseif has("mac")
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro:h18
@@ -557,6 +552,12 @@ function! SetFrontNTheme()
         colorscheme one
         let g:airline_theme='one'
         set antialias " mac vim anti alias
+    else
+        set lines=999 columns=999
+        set guifont=Source\ Code\ Pro\ 13.5
+        set background=dark
+        colorscheme one
+        let g:airline_theme='one'
     endif
 endfunction
 
