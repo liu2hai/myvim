@@ -12,6 +12,7 @@ set ruler		    " show the cursor position all the time
 set autoread		" auto read when file is changed from outside
 set number
 set hidden
+set nowrap          " 不折行显示
 
 filetype off          " necessary to make ftdetect work on Linux
 filetype on           " Enable filetype detection
