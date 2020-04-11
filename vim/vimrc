@@ -155,9 +155,9 @@ vnoremap > >gv
 cnoremap <C-V> <C-R>0
 inoremap <C-V> <C-R>0
 
-" 代替c-u, c-d翻半页
-nmap <silent> <space>u <C-U>
-nmap <silent> <space>d <C-D>
+" 翻半页比较闪，用8j吧
+nmap <silent> <space>u 8k
+nmap <silent> <space>d 8j
 
 " 使用精确mark跳转
 nnoremap ' `
