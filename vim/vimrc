@@ -227,7 +227,6 @@ Plug 'airblade/vim-gitgutter'
 
 " 语言相关插件
 Plug 'fatih/vim-go', {'tag': '*'}
-Plug 'iamcco/markdown-preview.vim', {'for': ['md', 'markdown']}
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp', 'c', 'cc', 'h', 'hpp']}
 
 " 补全插件
@@ -508,12 +507,6 @@ let g:cpp_experimental_template_highlight = 1
 "==============================================================================
 let g:AutoPairsMapSpace = 0
 let g:AutoPairsMultilineClose = 0
-
-"==============================================================================
-" markdwon
-"==============================================================================
-map <silent> <F5> <Plug>MarkdownPreview
-map <silent> <F6> <Plug>StopMarkdownPreview
 
 "==============================================================================
 " startify
