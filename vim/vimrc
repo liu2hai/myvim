@@ -402,6 +402,7 @@ map <silent> <space>m  :LeaderfFunction<CR>
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_StlColorscheme = 'one'
 let g:Lf_ReverseOrder = 1
+let g:Lf_ShowDevIcons = 0
 
 "==============================================================================
 "  ctags -- 手动生成tags文件，因为那些自动索引工具在大项目的时候实在太卡了
@@ -427,6 +428,7 @@ hi link EasyMotionShade  Comment
 "==============================================================================
 tnoremap <silent> <F1> <C-W>:ToggleTerminal<CR>
 nnoremap <silent> <F1> :ToggleTerminal<CR>
+tnoremap <silent> <Esc> <C-W>N
 
 " set your favorite shell
 let g:toggle_terminal#command = 'powershell'
