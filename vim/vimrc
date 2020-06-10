@@ -398,9 +398,9 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.git']
 "==============================================================================
 "  leaderF -- echo g:Lf_fuzzyMatch_C
 "==============================================================================
-map <silent> <leader>s :Leaderf --nameOnly file<CR>
-map <silent> <leader>b :Leaderf --nameOnly buffer<CR>
-map <silent> <leader>f :Leaderf --nameOnly --cword --stayOpen rg -i<CR>
+map <silent> <leader>s :Leaderf file --nameOnly<CR>
+map <silent> <leader>b :Leaderf! buffer --nameOnly<CR>
+map <silent> <leader>f :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s", expand("<cword>"))<CR><CR>
 map <silent> <space>m  :LeaderfFunction<CR>
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
