@@ -57,6 +57,15 @@ win下拷贝到vimfiles，mac和linux放到用户目录的.vim文件夹。<br>
  遇到问题，可以重启coc服务
  :CocRestart
 ```
+### python
+使用coc-python，事先得安装好python language server
+```
+pip install python-language-server==0.2.1
+详细信息见：https://pypi.org/project/python-language-server/0.2.1/
+
+:CocInstall coc-python
+
+```
 
 ### help
 doc文件夹里已经带了myvim的一些笔记，用下面的命令可以查看:
