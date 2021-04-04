@@ -79,6 +79,10 @@ set shortmess+=c
 set signcolumn=yes
 
 set tags=./.tags;,.tags
+
+" 不限制做字符串匹配使用的内存
+set maxmempattern=2000000
+
 "-----------------------------------------------
 " file type
 "-----------------------------------------------
