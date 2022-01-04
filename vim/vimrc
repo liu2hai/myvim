@@ -479,6 +479,8 @@ let g:airline_section_b = ' %{fugitive#head()}'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#gutentags#enabled = 0
 let g:airline#extensions#whitespace#checks = []     " 不检查space用法是否错误
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#show_coc_status = 0
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
