@@ -400,11 +400,21 @@ let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.git']
 
 "==============================================================================
-"  leaderF -- echo g:Lf_fuzzyMatch_C
+"  leaderF
 "==============================================================================
+" 查找文件，如果输入;则后面的内容是fullpath模式
 map <silent> <leader>s :Leaderf file --nameOnly<CR>
+
+" 查找buffer
 map <silent> <leader>b :Leaderf! buffer --nameOnly<CR>
+
+" 在全部文件中查找，当前光标下的单词，默认进入normal模式
 map <silent> <leader>f :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s", expand("<cword>"))<CR><CR>
+
+" 在全部文件中中查找，打开界面后输入要查找的内容，交互模式
+map <silent> <leader>gf :<C-U><C-R>=printf("Leaderf rg -F --stayOpen ")<CR><CR>
+
+" 列出当前文件的函数列表
 map <silent> <space>m  :LeaderfFunction<CR>
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
