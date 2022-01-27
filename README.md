@@ -40,11 +40,17 @@ win下拷贝到vimfiles，mac和linux放到用户目录的.vim文件夹。<br>
   "languageserver": {
     "golang": {
       "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "filetypes": ["go"]
+      "args":[],
+      "rootPatterns": ["go.mod", ".vscode"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true,
+        "buildFlags":["-tags=NEW_APP NEW_WEB"]
+      }
     }
   },
- "suggest.maxPreviewWidth": 200
+  "suggest.maxPreviewWidth": 200,
+  "coc.preferences.extensionUpdateCheck": "weekly"
 }
 
  安装coc-list
