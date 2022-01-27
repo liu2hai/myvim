@@ -403,6 +403,7 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.git']
 "  leaderF
 "==============================================================================
 " 查找文件，如果输入;则后面的内容是fullpath模式
+" 比如输入abc;dir，则abc搜文件名，dir搜路径名
 map <silent> <leader>s :Leaderf file --nameOnly<CR>
 
 " 查找buffer
