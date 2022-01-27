@@ -291,6 +291,9 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 " coc.nvim 插件
 " 配置见readme里的相关说明
 "==============================================================================
+" 如果有多个版本的node已安装，用下面的命令指定具体node
+" let g:coc_node_path="D:/software/nvm/v12.16.1/node64.exe"
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
