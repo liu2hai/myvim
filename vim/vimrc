@@ -289,32 +289,8 @@ let g:go_doc_keywordprg_enabled = 0 " use coc' K
 
 "==============================================================================
 " coc.nvim 插件
+" 配置见readme里的相关说明
 "==============================================================================
-" 装完coc后需要配置gopls作为lsp server
-" :CocConfig
-"{
-"  "languageserver": {
-"    "golang": {
-"      "command": "gopls",
-"      "rootPatterns": ["go.mod"],
-"      "filetypes": ["go"]
-"    }
-"  },
-"  " suggest.maxPreviewWidth": 200,
-"  " coc.preferences.extensionUpdateCheck": "weekly"
-"}
-"
-" 安装coc-list
-" :CocInstall coc-lists
-" coc-list操作界面的key map，见:h coc-list-mappings
-"
-" 安装coc-json, 提供配置补全
-" :CocInstall coc-json
-"
-" 遇到问题，可以重启coc服务
-" :CocRestart
-" ------------------------------------------------------
-
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
