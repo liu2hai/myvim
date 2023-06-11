@@ -559,7 +559,7 @@ function! SetFrontNTheme()
         set antialias " mac vim anti alias
         " 如果macvim echo
         " has("python3")返回0，可以用下面的语句来设置python3的dll
-        set pythonthreedll=/Users/zhulh7/homebrew/opt/python@3.11/Frameworks/Python.framework/Versions/3.11/lib/libpython3.11.dylib
+        set pythonthreedll=$HOME/homebrew/opt/python@3.11/Frameworks/Python.framework/Versions/3.11/lib/libpython3.11.dylib
     else
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro\ 13.5
