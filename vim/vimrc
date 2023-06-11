@@ -227,8 +227,8 @@ Plug 'rakr/vim-one'
 Plug 'drewtempelmeyer/palenight.vim'
 
 " git plugin
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+" Plug 'tpope/vim-fugitive'
+" Plug 'airblade/vim-gitgutter'
 
 " 语言相关插件
 Plug 'fatih/vim-go', {'tag': '*'}
@@ -465,7 +465,7 @@ vmap <Enter> <Plug>(EasyAlign)
 "==============================================================================
 " airline
 "==============================================================================
-let g:airline_section_b = ' %{fugitive#head()}'
+" let g:airline_section_b = ' %{fugitive#head()}'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#gutentags#enabled = 0
 let g:airline#extensions#whitespace#checks = []     " 不检查space用法是否错误
@@ -499,12 +499,12 @@ map <space>c <plug>NERDCommenterToggle
 " git
 "==============================================================================
 " gitgutter
-let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
+" let g:gitgutter_max_signs = 9999  " 一个buffer里最多显示sign数量
 
 " fugitive
-nmap <leader>ga :Git add *<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <leader>gs :G<CR>
+" nmap <leader>ga :Git add *<CR>
+" nmap <leader>gd :Gdiff<CR>
+" nmap <leader>gs :G<CR>
 
 "==============================================================================
 " cpp highlight
@@ -557,6 +557,9 @@ function! SetFrontNTheme()
         colorscheme one
         let g:airline_theme='one'
         set antialias " mac vim anti alias
+        " 如果macvim echo
+        " has("python3")返回0，可以用下面的语句来设置python3的dll
+        set pythonthreedll=/Users/zhulh7/homebrew/opt/python@3.11/Frameworks/Python.framework/Versions/3.11/lib/libpython3.11.dylib
     else
         set lines=999 columns=999
         set guifont=Source\ Code\ Pro\ 13.5
