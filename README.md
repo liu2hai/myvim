@@ -53,6 +53,9 @@ win下拷贝到vimfiles，mac和linux放到用户目录的.vim文件夹。<br>
   "coc.preferences.extensionUpdateCheck": "weekly"
 }
 
+安装gopls等工具，指定proxy:
+env http_proxy=socks5://127.0.0.1:1081 https_proxy=socks5://127.0.0.1:1081 vim -c 'GoInstallBinaries' -c qa
+
  安装coc-list
  :CocInstall coc-lists
  coc-list操作界面的key map，见:h coc-list-mappings
