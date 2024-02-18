@@ -590,3 +590,10 @@ endif
 " my macros
 "==============================================================================
 let @a = '_f*s:proto.w~ea(),lDj'
+
+" 打开当前buffer里的文件所在的文件夹
+nnoremap <silent> <leader>o :call ShowExpWin()<CR>
+function! ShowExpWin()
+    let folder = expand('%:p:h')
+    call system('start "" "' . folder . '"')
+endfunction
