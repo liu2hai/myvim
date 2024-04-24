@@ -67,12 +67,9 @@ env http_proxy=socks5://127.0.0.1:1081 https_proxy=socks5://127.0.0.1:1081 vim -
  :CocRestart
 ```
 ### python
-使用coc-python，事先得安装好python language server
+使用coc-pyright
 ```
-pip install python-language-server==0.2.1
-详细信息见：https://pypi.org/project/python-language-server/0.2.1/
-
-:CocInstall coc-python
+:CocInstall coc-pyright
 
 ```
 
